@@ -1,96 +1,99 @@
-#WSGI
-Python×¨×¢ÓÚÉú³ÉHTMLÎÄµµ¡£ÒòÎªÎÒÃÇ²»Ï£Íû½Ó´¥µ½TCPÁ¬½Ó¡¢HTTPÔ­Ê¼ÇëÇóºÍÏìÓ¦¸ñÊ½£¬ËùÒÔ£¬ĞèÒªÒ»¸öÍ³Ò»µÄ½Ó¿Ú£¬ÈÃÎÒÃÇ×¨ĞÄÓÃPython±àĞ´WebÒµÎñ¡£
+# WSGI
+Pythonä¸“æ³¨äºç”ŸæˆHTMLæ–‡æ¡£ã€‚å› ä¸ºæˆ‘ä»¬ä¸å¸Œæœ›æ¥è§¦åˆ°TCPè¿æ¥ã€HTTPåŸå§‹è¯·æ±‚å’Œå“åº”æ ¼å¼ï¼Œæ‰€ä»¥ï¼Œéœ€è¦ä¸€ä¸ªç»Ÿä¸€çš„æ¥å£ï¼Œè®©æˆ‘ä»¬ä¸“å¿ƒç”¨Pythonç¼–å†™Webä¸šåŠ¡ã€‚
 
-Õâ¸ö½Ó¿Ú¾ÍÊÇWSGI£ºWeb Server Gateway Interface¡£
+è¿™ä¸ªæ¥å£å°±æ˜¯WSGIï¼šWeb Server Gateway Interfaceã€‚
 
-WSGI½Ó¿Ú¶¨Òå·Ç³£¼òµ¥£¬ËüÖ»ÒªÇóWeb¿ª·¢ÕßÊµÏÖÒ»¸öº¯Êı£¬¾Í¿ÉÒÔÏìÓ¦HTTPÇëÇó¡£ÎÒÃÇÀ´¿´Ò»¸ö×î¼òµ¥µÄWeb°æ±¾µÄ¡°Hello, web!¡±£º
+WSGIæ¥å£å®šä¹‰éå¸¸ç®€å•ï¼Œå®ƒåªè¦æ±‚Webå¼€å‘è€…å®ç°ä¸€ä¸ªå‡½æ•°ï¼Œå°±å¯ä»¥å“åº”HTTPè¯·æ±‚ã€‚æˆ‘ä»¬æ¥çœ‹ä¸€ä¸ªæœ€ç®€å•çš„Webç‰ˆæœ¬çš„â€œHello, web!â€ï¼š
 
-ÔËĞĞWSGI·şÎñ
+è¿è¡ŒWSGIæœåŠ¡
 
-ÎÒÃÇÏÈ±àĞ´hello.py£¬ÊµÏÖWebÓ¦ÓÃ³ÌĞòµÄWSGI´¦Àíº¯Êı£º
+æˆ‘ä»¬å…ˆç¼–å†™hello.pyï¼Œå®ç°Webåº”ç”¨ç¨‹åºçš„WSGIå¤„ç†å‡½æ•°ï¼š
+``` python
+# hello.py
+def application(environ, start_response):
+    start_response('200 OK', [('Content-Type', 'text/html')])
+    return [b'<h1>Hello, web!</h1>']
+```     
+ç„¶åï¼Œå†ç¼–å†™ä¸€ä¸ªserver.pyï¼Œè´Ÿè´£å¯åŠ¨WSGIæœåŠ¡å™¨ï¼ŒåŠ è½½application()å‡½æ•°ï¼š
+``` python
+# server.py
+# ä»wsgirefæ¨¡å—å¯¼å…¥:
+from wsgiref.simple_server import make_server
+# å¯¼å…¥æˆ‘ä»¬è‡ªå·±ç¼–å†™çš„applicationå‡½æ•°:
+from hello import application
+# åˆ›å»ºä¸€ä¸ªæœåŠ¡å™¨ï¼ŒIPåœ°å€ä¸ºç©ºï¼Œç«¯å£æ˜¯8000ï¼Œå¤„ç†å‡½æ•°æ˜¯application:
+httpd = make_server('', 8000, application)
+print('Serving HTTP on port 8000...')
+# å¼€å§‹ç›‘å¬HTTPè¯·æ±‚:
+httpd.serve_forever()
+``` 
 
-    # hello.py
-    def application(environ, start_response):
-        start_response('200 OK', [('Content-Type', 'text/html')])
-        return [b'<h1>Hello, web!</h1>']
-    
-È»ºó£¬ÔÙ±àĞ´Ò»¸öserver.py£¬¸ºÔğÆô¶¯WSGI·şÎñÆ÷£¬¼ÓÔØapplication()º¯Êı£º
-    # server.py
-    # ´ÓwsgirefÄ£¿éµ¼Èë:
-    from wsgiref.simple_server import make_server
-    # µ¼ÈëÎÒÃÇ×Ô¼º±àĞ´µÄapplicationº¯Êı:
-    from hello import application
-    # ´´½¨Ò»¸ö·şÎñÆ÷£¬IPµØÖ·Îª¿Õ£¬¶Ë¿ÚÊÇ8000£¬´¦Àíº¯ÊıÊÇapplication:
-    httpd = make_server('', 8000, application)
-    print('Serving HTTP on port 8000...')
-    # ¿ªÊ¼¼àÌıHTTPÇëÇó:
-    httpd.serve_forever()
+ç”±äºç”¨Pythonå¼€å‘ä¸€ä¸ªWebæ¡†æ¶ååˆ†å®¹æ˜“ï¼Œæ‰€ä»¥Pythonæœ‰ä¸Šç™¾ä¸ªå¼€æºçš„Webæ¡†æ¶ã€‚è¿™é‡Œæˆ‘ä»¬å…ˆä¸è®¨è®ºå„ç§Webæ¡†æ¶çš„ä¼˜ç¼ºç‚¹ï¼Œç›´æ¥é€‰æ‹©ä¸€ä¸ªæ¯”è¾ƒæµè¡Œçš„Webæ¡†æ¶â€”â€”Flaskæ¥ä½¿ç”¨ã€‚
 
+ç”¨Flaskç¼–å†™Web Appæ¯”WSGIæ¥å£ç®€å•ï¼ˆè¿™ä¸æ˜¯åºŸè¯ä¹ˆï¼Œè¦æ˜¯æ¯”WSGIè¿˜å¤æ‚ï¼Œç”¨æ¡†æ¶å¹²å˜›ï¼Ÿï¼‰ï¼Œæˆ‘ä»¬å…ˆç”¨pipå®‰è£…Flaskï¼š
+``` python
+$ pip install flask
+``` 
+ç„¶åå†™ä¸€ä¸ªapp.pyï¼Œå¤„ç†3ä¸ªURLï¼Œåˆ†åˆ«æ˜¯ï¼š
 
-ÓÉÓÚÓÃPython¿ª·¢Ò»¸öWeb¿ò¼ÜÊ®·ÖÈİÒ×£¬ËùÒÔPythonÓĞÉÏ°Ù¸ö¿ªÔ´µÄWeb¿ò¼Ü¡£ÕâÀïÎÒÃÇÏÈ²»ÌÖÂÛ¸÷ÖÖWeb¿ò¼ÜµÄÓÅÈ±µã£¬Ö±½ÓÑ¡ÔñÒ»¸ö±È½ÏÁ÷ĞĞµÄWeb¿ò¼Ü¡ª¡ªFlaskÀ´Ê¹ÓÃ¡£
+GET /ï¼šé¦–é¡µï¼Œè¿”å›Homeï¼›
 
-ÓÃFlask±àĞ´Web App±ÈWSGI½Ó¿Ú¼òµ¥£¨Õâ²»ÊÇ·Ï»°Ã´£¬ÒªÊÇ±ÈWSGI»¹¸´ÔÓ£¬ÓÃ¿ò¼Ü¸ÉÂï£¿£©£¬ÎÒÃÇÏÈÓÃpip°²×°Flask£º
+GET /signinï¼šç™»å½•é¡µï¼Œæ˜¾ç¤ºç™»å½•è¡¨å•ï¼›
 
-    $ pip install flask
-È»ºóĞ´Ò»¸öapp.py£¬´¦Àí3¸öURL£¬·Ö±ğÊÇ£º
+POST /signinï¼šå¤„ç†ç™»å½•è¡¨å•ï¼Œæ˜¾ç¤ºç™»å½•ç»“æœã€‚
 
-GET /£ºÊ×Ò³£¬·µ»ØHome£»
+æ³¨æ„å™¢ï¼ŒåŒä¸€ä¸ªURL/signinåˆ†åˆ«æœ‰GETå’ŒPOSTä¸¤ç§è¯·æ±‚ï¼Œæ˜ å°„åˆ°ä¸¤ä¸ªå¤„ç†å‡½æ•°ä¸­ã€‚
 
-GET /signin£ºµÇÂ¼Ò³£¬ÏÔÊ¾µÇÂ¼±íµ¥£»
+Flaské€šè¿‡Pythonçš„è£…é¥°å™¨åœ¨å†…éƒ¨è‡ªåŠ¨åœ°æŠŠURLå’Œå‡½æ•°ç»™å…³è”èµ·æ¥ï¼Œæ‰€ä»¥ï¼Œæˆ‘ä»¬å†™å‡ºæ¥çš„ä»£ç å°±åƒè¿™æ ·
+``` python
+from flask import Flask, request, render_template
 
-POST /signin£º´¦ÀíµÇÂ¼±íµ¥£¬ÏÔÊ¾µÇÂ¼½á¹û¡£
+app = Flask(__name__)
 
-×¢ÒâàŞ£¬Í¬Ò»¸öURL/signin·Ö±ğÓĞGETºÍPOSTÁ½ÖÖÇëÇó£¬Ó³Éäµ½Á½¸ö´¦Àíº¯ÊıÖĞ¡£
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    return render_template('home.html')
 
-FlaskÍ¨¹ıPythonµÄ×°ÊÎÆ÷ÔÚÄÚ²¿×Ô¶¯µØ°ÑURLºÍº¯Êı¸ø¹ØÁªÆğÀ´£¬ËùÒÔ£¬ÎÒÃÇĞ´³öÀ´µÄ´úÂë¾ÍÏñÕâÑù
+@app.route('/signin', methods=['GET'])
+def signin_form():
+    return render_template('form.html')
 
-    from flask import Flask, request, render_template
-    
-    app = Flask(__name__)
-    
-    @app.route('/', methods=['GET', 'POST'])
-    def home():
-        return render_template('home.html')
-    
-    @app.route('/signin', methods=['GET'])
-    def signin_form():
-        return render_template('form.html')
-    
-    @app.route('/signin', methods=['POST'])
-    def signin():
-        username = request.form['username']
-        password = request.form['password']
-        if username=='admin' and password=='password':
-            return render_template('signin-ok.html', username=username)
-        return render_template('form.html', message='Bad username or password', username=username)
-    
-    if __name__ == '__main__':
-        app.run()
+@app.route('/signin', methods=['POST'])
+def signin():
+    username = request.form['username']
+    password = request.form['password']
+    if username=='admin' and password=='password':
+        return render_template('signin-ok.html', username=username)
+    return render_template('form.html', message='Bad username or password', username=username)
 
-³ıÁËFlask£¬³£¼ûµÄPython Web¿ò¼Ü»¹ÓĞ£º
+if __name__ == '__main__':
+    app.run()
+``` 
+é™¤äº†Flaskï¼Œå¸¸è§çš„Python Webæ¡†æ¶è¿˜æœ‰ï¼š
 
-Django£ºÈ«ÄÜĞÍWeb¿ò¼Ü£»
+Djangoï¼šå…¨èƒ½å‹Webæ¡†æ¶ï¼›
 
-web.py£ºÒ»¸öĞ¡ÇÉµÄWeb¿ò¼Ü£»
+web.pyï¼šä¸€ä¸ªå°å·§çš„Webæ¡†æ¶ï¼›
 
-Bottle£ººÍFlaskÀàËÆµÄWeb¿ò¼Ü£»
+Bottleï¼šå’ŒFlaskç±»ä¼¼çš„Webæ¡†æ¶ï¼›
 
-Tornado£ºFacebookµÄ¿ªÔ´Òì²½Web¿ò¼Ü
+Tornadoï¼šFacebookçš„å¼€æºå¼‚æ­¥Webæ¡†æ¶
 
-FlaskÍ¨¹ırender_template()º¯ÊıÀ´ÊµÏÖÄ£°åµÄäÖÈ¾¡£ºÍWeb¿ò¼ÜÀàËÆ£¬PythonµÄÄ£°åÒ²ÓĞºÜ¶àÖÖ¡£FlaskÄ¬ÈÏÖ§³ÖµÄÄ£°åÊÇjinja2£¬ËùÒÔÎÒÃÇÏÈÖ±½Ó°²×°jinja2£º
-   
-    <html>
-    <head>
-      <title>Welcome, {{ username }}</title>
-    </head>
-    <body>
-      <p>Welcome, {{ username }}!</p>
-    </body>
-    </html>
-³ıÁËJinja2£¬³£¼ûµÄÄ£°å»¹ÓĞ£º
+Flaské€šè¿‡render_template()å‡½æ•°æ¥å®ç°æ¨¡æ¿çš„æ¸²æŸ“ã€‚å’ŒWebæ¡†æ¶ç±»ä¼¼ï¼ŒPythonçš„æ¨¡æ¿ä¹Ÿæœ‰å¾ˆå¤šç§ã€‚Flaské»˜è®¤æ”¯æŒçš„æ¨¡æ¿æ˜¯jinja2ï¼Œæ‰€ä»¥æˆ‘ä»¬å…ˆç›´æ¥å®‰è£…jinja2ï¼š
+ ``` python  
+<html>
+<head>
+  <title>Welcome, {{ username }}</title>
+</head>
+<body>
+  <p>Welcome, {{ username }}!</p>
+</body>
+</html>
+``` 
+é™¤äº†Jinja2ï¼Œå¸¸è§çš„æ¨¡æ¿è¿˜æœ‰ï¼š
 
-Mako£ºÓÃ<% ... %>ºÍ${xxx}µÄÒ»¸öÄ£°å£»
+Makoï¼šç”¨<% ... %>å’Œ${xxx}çš„ä¸€ä¸ªæ¨¡æ¿ï¼›
 
-Cheetah£ºÒ²ÊÇÓÃ<% ... %>ºÍ${xxx}µÄÒ»¸öÄ£°å£»
+Cheetahï¼šä¹Ÿæ˜¯ç”¨<% ... %>å’Œ${xxx}çš„ä¸€ä¸ªæ¨¡æ¿ï¼›
 
-Django£ºDjangoÊÇÒ»Õ¾Ê½¿ò¼Ü£¬ÄÚÖÃÒ»¸öÓÃ{% ... %}ºÍ{{ xxx }}µÄÄ£°å¡£
+Djangoï¼šDjangoæ˜¯ä¸€ç«™å¼æ¡†æ¶ï¼Œå†…ç½®ä¸€ä¸ªç”¨{% ... %}å’Œ{{ xxx }}çš„æ¨¡æ¿ã€‚
