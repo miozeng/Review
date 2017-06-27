@@ -14,6 +14,7 @@
 14.网络安全
 15.hibernate
 16.spring
+17.Python 
 待学习：
- Python netty dubbo zookeeper
+ netty dubbo zookeeper
 大数据高并发系统处理
