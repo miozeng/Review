@@ -17,6 +17,6 @@
 16.spring
 17.Python 
 待学习：
- netty dubbo zookeeper
+ netty dubbo zookeeper，mysql性能调优等等，redis事务缓存处理等等
 大数据高并发系统处理
 
