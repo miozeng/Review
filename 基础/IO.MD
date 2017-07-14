@@ -29,7 +29,7 @@ ByteArrayInputStream、StringBufferInputStream、FileInputStream 是三种基�
 
 
 IO流结构图
-
+![image](https://github.com/miozeng/Review/blob/master/%E5%9F%BA%E7%A1%80/%E5%9B%BE%E7%89%871.png)
 
 ### 输出字节流OutputStream 
 定义和结构说明： 
@@ -38,7 +38,7 @@ OutputStream 是所有的输出字节流的父类，它是一个抽象类。 
 ByteArrayOutputStream、FileOutputStream是两种基本的介质流，它们分别向Byte 数组、和本地文件中写入数据。PipedOutputStream 是向与其它线程共用的管道中写入数据， 
 ObjectOutputStream 和所有FilterOutputStream的子类都是装饰流。具体例子跟InputStream是对应的。
 以InputStream和OutputStream形成的层次关系
-
+![image](https://github.com/miozeng/Review/blob/master/%E5%9F%BA%E7%A1%80/%E5%9B%BE%E7%89%872.png)
 ### 字符输入流Reader 
 定义和说明： 
 在上面的继承关系图中可以看出： 
@@ -48,7 +48,7 @@ BufferedReader 很明显就是一个装饰器，它和其子类负责装饰其�
 FilterReader 是所有自定义具体装饰流的父类，其子类PushbackReader 对Reader 对象进行装饰，会增加一个行号。 
 InputStreamReader 是一个连接字节流和字符流的桥梁，它将字节流转变为字符流。FileReader可以说是一个达到此功能、常用的工具类，在其源代码中明显使用了将FileInputStream 转变为Reader 的方法。我们可以从这个类中得到一定的技巧。Reader 中各个类的用途和使用方法基本和InputStream 中的类使用一致。后面会有Reader 与InputStream 的对应关系。
 以Reader和Writer形成的层次关系
-
+![image](https://github.com/miozeng/Review/blob/master/%E5%9F%BA%E7%A1%80/%E5%9B%BE%E7%89%873.png)
 
 # Java I/O库的两个设计模式：
   Java的I/O库总体设计是符合装饰者模式（Decorator）跟适配器模式（Adapter）的。如前所述，这个库中处理流的类叫做流类。引子里所谈到的FileInputStream，FileOutputStream，DataInputStream及DataOutputStream都是流处理器的例子。
