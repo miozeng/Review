@@ -50,8 +50,17 @@ zkServer.sh start zoo1.sh
 zkServer.sh start zoo2.sh
 zkServer.sh start zoo3.sh
 ``` 
+
 ### Zookeeper的集群
-为了获得可靠地Zookeeper服务，用户应该在一个机群上部署Zookeeper。只要机群上大多数的Zookeeper服务启动了，那么总的 Zookeeper服务将是可用的。集群的配置方式，和前两种类似，同样需要进行环境变量的配置。在每台机器上conf/zoo.cf配置文件的参数设置 相同
+为了获得可靠地Zookeeper服务，用户应该在一个机群上部署Zookeeper。只要机群上大多数的Zookeeper服务启动了，那么总的 Zookeeper服务将是可用的。集群的配置方式，和前两种类似，同样需要进行环境变量的配置。
+#### 在dataDir(/usr/local/zk/data)目录创建myid文件
+
+Server0机器的内容为：43
+Server1机器的内容为：47
+Server2机器的内容为：48
+
+#### 在每台机器上conf/zoo.cf配置文件的参数设置 相同
+
 ``` java
 tickTime=2000  
 initLimit=5  
