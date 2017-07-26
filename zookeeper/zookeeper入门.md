@@ -83,7 +83,7 @@ ZooKeeper有多种记录时间的形式，其中包含以下几个主要属性�
 在ZooKeeper中有9个基本操作，如下图所示：
 
 图 2.3 ZooKeeper类方法描述
-![image](https://github.com/miozeng/Review/blob/master/zookeeper/2.3png)
+![image](https://github.com/miozeng/Review/blob/master/zookeeper/2.3.png)
 
 
 更新ZooKeeper操作是有限制的。delete或setData必须明确要更新的Znode的版本号，我们可以调用exists找到。如果版本号不匹配，更新将会失败。
