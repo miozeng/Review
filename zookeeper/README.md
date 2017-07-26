@@ -9,4 +9,5 @@
 |[zookeeper机制](zookeeper机制.md)|
 |[ZooKeeper一致性原理](ZooKeeper一致性原理.md)|
 |[ZooKeeper伸缩性](ZooKeeper伸缩性.md)|
+|[服务发现比较](服务发现比较.md)|
 |[总结](总结.md)|
