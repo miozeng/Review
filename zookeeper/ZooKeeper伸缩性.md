@@ -1,0 +1,39 @@
+# ZooKeeper伸缩性
+经过前面的介绍，我想大家都已经知道了在ZooKeeper集群当中有两种角色Leader和Follower。Leader可以接受client 请求，也接收其他Server转发的写请求，负责更新系统状态。 Follower也可以接收client请求，如果是写请求将转发给Leader来更新系统状态，读请求则由Follower的内存数据库直接响应。
+
+但在ZooKeeper的3.3.3版本以后，ZooKeeper中又添加了一种新角色Observer。Observer的作用同Follower类似，唯一区别就是它不参与选主过程。那么，我们就可以根据该特性将ZK集群中的Server分为两种：
+
+(1) 投票Server：Leader、Follower
+
+(2) 非投票Server：Observer
+
+
+### 为什么引入Observer
+在Observer出现以前，ZooKeeper的伸缩性由Follower来实现，我们可以通过添加Follower节点的数量来保证 ZooKeeper服务的读性能。但是随着Follower节点数量的增加，ZooKeeper服务的写性能受到了影响。
+
+简单来说，Zab协议规定：来自Client的所有写请求，都要转发给ZK服务中唯一的Server—Leader， 由Leader根据该请求发起一个Proposal。然后，其他的Server对该Proposal进行Vote。之后，Leader对Vote进行收 集，当Vote数量过半时Leader会向所有的Server发送一个通知消息。最后，当Client所连接的Server收到该消息时，会把该操作更新 到内存中并对Client的写请求做出回应。
+
+ZooKeeper 服务器在上述协议中实际扮演了两个职能。它们一方面从客户端接受连接与操作请求，另一方面对操作结果进行投票。这两个职能在 ZooKeeper集群扩展的时候彼此制约。例如，当我们希望增加 ZK服务中Client数量的时候，那么我们就需要增加Server的数量，来支持这么多的客户端。然而，从Zab协议对写请求的处理过程中我们可以发 现，增加服务器的数量，则增加了对协议中投票过程的压力。因为Leader节点必须等待集群中过半Server响应投票，于是节点的增加使得部分计算机运 行较慢，从而拖慢整个投票过程的可能性也随之提高，写操作也会随之下降。这正是我们在实际操作中看到的问题——随着 ZooKeeper 集群变大，写操作的吞吐量会下降。
+
+
+要打破这一耦合关系，我们引入了不参与投票的服务 器，称为 Observer。 Observer可以接受客户端的连接，并将写请求转发给Leader节点。但是，Leader节点不会要求 Observer参加投票。Observer不参与投票过程，和其他服务节点一起得到投票结果。
+
+
+### Observer应用
+(1) Observer提升读性能的可伸缩性
+
+应对Client的数量增加，是 Observer的一个重要用例，但是实际上它还给集群带来很多其它的好处。Observer作为ZooKeeper的一个优化，Observer服务器可以直接获取Leader的本地数据存储，而无需经过投票过程。但这也面临一定的"时光旅行"风险，也就是说：可能在读到新值之后又读到老值。但这只在服务器故障时才会发生事实上，在这种情况下，Client可以通过"sync"操作来保证下一个值是最新的。
+
+因此，在大量读操作的工作负载下，Observer会使ZooKeeper的性能得到巨大提升。若要增加投票Server数量来承担读操作，那么就 会影响ZooKeeper服务的写性能。而且Observer允许我们将读性能和写性能分开，这使ZooKeeper更适用于一些以读为主的应用场景。
+
+(2) Observer提供了广域网能力
+
+Observer还能做更多。Observer对于跨广域网连接的Client来说是很好的候选方案。Observer可作为候选方案，原因有三：
+
+① 为了获得很好的读性能，有必要让客户端离服务器尽量近，这样往返时延不会太高。然而，将 ZooKeeper 集群分散到两个集群是非常不可取的设计，因为良好配置的 ZooKeeper 应该让投票服务器间用低时延连接互连——否则，我们将会遇到上面提到的低反映速度的问题。
+
+② 而Observer 可以被部署在，需要访问 ZooKeeper 的任意数据中心中。这样，投票协议不会受到数据中心间链路的高时延的影响，性能得到提升。投票过程中 Observer 和领导节点间的消息远少于投票服务器和领导节点间的消息。这有助于在远程数据中心高写负载的情况下降低带宽需求。
+
+③ 由于Observer即使失效也不会影响到投票集群，这样如果数据中心间链路发生故障，不会影响到服务本身的可用性。这种故障的发生概率要远高于一个数据中心中机架间的连接的故障概率，所以不依赖于这种链路是个优点。
+
+
