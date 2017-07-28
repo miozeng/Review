@@ -1,3 +1,5 @@
+http://lib.csdn.net/article/mysql/5051
+http://lib.csdn.net/article/mysql/5056
 ## 单机MySQL数据库的优化
 　　### 一、服务器硬件对MySQL性能的影响
 　　①磁盘寻道能力 （磁盘I/O），我们现在上的都是SAS15000转的硬盘。MySQL每秒钟都在进行大量、复杂的查询操作，对磁盘的读写量可想而知。所以，通常认为磁 盘I/O是制约MySQL性能的最大因素之一，对于日均访 问量在100万PV以上的Discuz!论坛，由于磁盘I/O的制约，MySQL的性能会非常低下！解决这一制约因素可以考虑以下几种解决方案： 使用RAID1+0磁盘阵列，注意不要尝试使用RAID-5，MySQL在RAID-5磁盘阵列上的效率不会像你期待的那样快。
