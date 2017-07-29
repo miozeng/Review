@@ -1,202 +1,135 @@
 
 
-### Èý´ó·¶Ê½
-µÚÒ»·¶Ê½:È·±£Ã¿ÁÐµÄÔ­×ÓÐÔ.
-µÚ¶þ·¶Ê½:ÔÚµÚÒ»·¶Ê½µÄ»ù´¡ÉÏ¸ü½øÒ»²ã,Ä¿±êÊÇÈ·±£±íÖÐµÄÃ¿ÁÐ¶¼ºÍÖ÷¼üÏà¹Ø.
-µÚÈý·¶Ê½:ÔÚµÚ¶þ·¶Ê½µÄ»ù´¡ÉÏ¸ü½øÒ»²ã,Ä¿±êÊÇÈ·±£Ã¿ÁÐ¶¼ºÍÖ÷¼üÁÐÖ±½ÓÏà¹Ø,¶ø²»ÊÇ¼ä½ÓÏà¹Ø.
+### ä¸‰å¤§èŒƒå¼
+ç¬¬ä¸€èŒƒå¼:ç¡®ä¿æ¯åˆ—çš„åŽŸå­æ€§.     
+ç¬¬äºŒèŒƒå¼:åœ¨ç¬¬ä¸€èŒƒå¼çš„åŸºç¡€ä¸Šæ›´è¿›ä¸€å±‚,ç›®æ ‡æ˜¯ç¡®ä¿è¡¨ä¸­çš„æ¯åˆ—éƒ½å’Œä¸»é”®ç›¸å…³.     
+ç¬¬ä¸‰èŒƒå¼:åœ¨ç¬¬äºŒèŒƒå¼çš„åŸºç¡€ä¸Šæ›´è¿›ä¸€å±‚,ç›®æ ‡æ˜¯ç¡®ä¿æ¯åˆ—éƒ½å’Œä¸»é”®åˆ—ç›´æŽ¥ç›¸å…³,è€Œä¸æ˜¯é—´æŽ¥ç›¸å…³.      
 
-### »ù´¡²Ù×÷
-Ôö   
-INSERT INTO table_name VALUES (value1,value2,value3,...);
-»ò    
-INSERT INTO table_name (column1,column2,column3,...) VALUES (value1,value2,value3,...);
+### åŸºç¡€æ“ä½œ
+å¢ž       
+INSERT INTO table_name VALUES (value1,value2,value3,...);    
+æˆ–    
+INSERT INTO table_name (column1,column2,column3,...) VALUES (value1,value2,value3,...);      
 
-É¾   
-DELETE FROM table_name WHERE some_column=some_value;
+åˆ    
+DELETE FROM table_name WHERE some_column=some_value;    
 
-¸Ä   
-UPDATE table_name SET column1=value1,column2=value2,...WHERE some_column=some_value;   
+æ”¹       
+UPDATE table_name SET column1=value1,column2=value2,...WHERE some_column=some_value;       
 
-²é
-SELECT column_name,column_name FROM table_name;
-
-
-#### ²Ù×÷·û
-ÓÃÀ´Áª½á»ò¸Ä±äWHERE×Ó¾äÖÐµÄ×Ó¾äµÄ¹Ø¼ü×Ö¡£
-AND²Ù×÷·û£º     
-ÓÃÔÚWHERE×Ó¾äÖÐµÄ¹Ø¼ü×Ö£¬ÓÃÀ´Ö¸Ê¾¼ìË÷Âú×ã ËùÓÐ ¸ø¶¨Ìõ¼þµÄÐÐ¡£
-OR²Ù×÷·û£º    
-ÓÃÔÚWHERE×Ó¾äÖÐµÄ¹Ø¼ü×Ö£¬ÓÃÀ´±íÊ¾¼ìË÷Æ¥Åä ÈÎÒ» ¸ø¶¨Ìõ¼þµÄÐÐ¡£
-IN²Ù×÷·û£º  
-ÓÃÔÚWHERE×Ó¾äÖÐµÄ¹Ø¼ü×Ö£¬ÓÃÀ´Ö¸¶¨ÒªÆ¥ÅäÖµµÄÇåµ¥µÄ¹Ø¼ü×Ö(È¡ºÏ·¨ÖµµÄÓÉ¶ººÅ·Ö¸î¿ªµÄÇåµ¥£¬È«ÔÚÔ²À¨ºÅÖÐ)£¬¹¦ÄÜÓëORÏàµ±¡£
-NOT²Ù×÷·û£º  
-ÓÃÔÚWHERE×Ó¾äÖÐµÄ¹Ø¼ü×Ö£¬ÓÃÀ´·ñ¶¨ËüÖ®ºóËù¸úµÄÈÎºÎÌõ¼þ¡£
-BETWEEN²Ù×÷·û£º  
-ÓÃÔÚWHERE×Ó¾äÖÐµÄ¹Ø¼ü×Ö£¬ÓÃÀ´¼ì²éÄ³¸ö·¶Î§µÄÖµ¡£
-Í¨Åä·û    
-ÓÃÀ´Æ¥ÅäÖµµÄÒ»²¿·ÖµÄÌØÊâ×Ö·û¡£ÎªÔÚËÑË÷×Ó¾äÖÐÊ¹ÓÃÍ¨Åä·û£¬±ØÐëÊ¹ÓÃLIKEÎ½´Ê¡£LIKEÖ¸Ê¾MySQLºó¸úµÄËÑË÷Ä£Ê½ÀûÓÃÍ¨Åä·ûÆ¥Åä¶ø²»ÊÇÖ±½ÓÏàµÈÆ¥Åä½øÐÐ±È½Ï¡£
-
-%Í¨Åä·û£º  
-±íÊ¾ÈÎºÎ×Ö·û³öÏÖµÄÈÎÒ»´ÎÊý¡£  
-_Í¨Åä·û£º  
-ÏÂ»®ÏßÍ¨Åä·û _ ÓÃÍ¾Óë%Ò»Ñù£¬µ«ÏÂ»®ÏßÖ»Æ¥Åäµ¥¸ö×Ö·û¶ø²»ÊÇ¶à¸ö×Ö·û¡£   
-
-Í¨Åä·ûÊ¹ÓÃ¼¼ÇÉ   
-1¡¢²»Òª¹ý¶ÈÊ¹ÓÃÍ¨Åä·û¡£Èç¹ûÆäËû²Ù×÷ÄÜ´ïµ½ÏàÍ¬µÄÄ¿µÄ£¬Ó¦¸ÃÊ¹ÓÃÆäËû²Ù×÷·û¡£   
-2¡¢ÔÚÈ·ÊµÐèÒªÊ¹ÓÃÍ¨Åä·ûÊ±³ý·Ç¾ø¶ÔÓÐ±ØÒª£¬·ñÔò²»Òª°ÑËüÃÇÓÃÔÚËÑË÷Ä£Ê½µÄ×î¿ªÊ¼´¦£¬ÒòÎªÕâÑùÊÇ×îÂýµÄ¡£  
-3¡¢×ÐÏ¸×¢ÒâÍ¨Åä·ûµÄÎ»ÖÃ¡£Èç¹û·Å´íµØ·½£¬¿ÉÄÜ²»»á·µ»ØÏëÒªµÄÊý¾Ý¡£   
+æŸ¥   
+SELECT column_name,column_name FROM table_name;   
 
 
-#### ¼ÆËã×Ö¶Î
-1¡¢ConcatÆ´½Ó×Ö¶Î£º
-°Ñ¶à¸ö´®Á´½ÓÆðÀ´ÐÎ³ÉÒ»¸ö½Ï³¤µÄ´®£¬ÐèÒªÒ»¸ö»ò¶à¸öÖ¸¶¨µÄ´®£¬¸÷¸ö´®Ö®¼äÓÃ¶ººÅ¸ô¿ª¡£
-ÀýÈç£ºSELECT Concat(vend_name,'(',vend_country,')') FROM vendors ORDER BY vend_name;
-2¡¢È¥µô·µ»ØµÄÖµÖÐµÄ¿Õ¸ñ£º
-(1)¡¢RTrim()È¥µôÓÒ²à¶àÓàµÄ¿Õ¸ñÀ´ÕûÀíÊý¾Ý¡£
-(2)¡¢LTrim()È¥µô×ó²à¶àÓàµÄ¿Õ¸ñÀ´ÕûÀíÊý¾Ý¡£
-(3)¡¢Trim()È¥µô×óÓÒÁ½±ß¶àÓàµÄ¿Õ¸ñÀ´ÕûÀíÊý¾Ý¡£
-3¡¢Ö´ÐÐËãÊýÔËËã(MySQLÖ§³Ö ¼Ó¼õ³Ë³ýÔËËãºÍÔ²À¨ºÅ¸Ä±äÔËËãÓÅÏÈ¼¶)£º
-¼ÆËã×Ö¶ÎÁíÒ»¸öÓÃÍ¾¾ÍÊÇ¶Ô¼ìË÷³öµÄÊý¾Ý½øÐÐËãÊõ¼ÆËã¡£
-ÀýÈç£ºSELECT prod_id, quantity, item_price, quantity * item_price AS expanded_price FROM orderitems WHERE order_num = 20005;
+#### æ“ä½œç¬¦
+ç”¨æ¥è”ç»“æˆ–æ”¹å˜WHEREå­å¥ä¸­çš„å­å¥çš„å…³é”®å­—ã€‚
 
-#### ÊÂ¼þ´¦Àíº¯Êý
-º¯ÊýÒ»°ãÊÇÔÚÊý¾ÝÉÏÖ´ÐÐµÄ£¬Ëü¸øÊý¾ÝµÄ×ª»»ºÍ´¦ÀíÌá¹©ÁË·½±ã¡£´ó¶àÊýSQLÊµÏÖÖ§³ÖÓÃÓÚ´¦ÀíÎÄ±¾´®µÄº¯Êý¡¢ÓÃÓÚÔÚÊýÖµÊý¾ÝÉÏ½øÐÐËãÊõÔËËã²Ù×÷µÄº¯Êý¡¢ÓÃÓÚ´¦ÀíÈÕÆÚºÍÊ±¼ä²¢ÌáÈ¡ÌØ¶¨³É·ÖµÄÈÕÆÚºÍÊ±¼äº¯Êý¡¢·µ»ØDBMSÕýÊ¹ÓÃµÄÌØÊâÐÅÏ¢µÄº¯Êý
-1¡¢³£¼ûµÄÎÄ±¾´¦Àíº¯Êý£º
-(1)¡¢Upper(str)£º½«ÎÄ±¾str×ª»»Îª´óÐ´¡£
-Àý£ºSELECT Upper(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;
-(2)¡¢Left(str, len)£º·µ»Ø´®str×ó±ßµÄlen¸ö×Ö·û¡£
-Àý£ºSELECT Left(vend_name, 3) AS vend_name_upcase FROM vendors ORDER BY vend_name;
-(3)¡¢Length(str)£º·µ»Ø´®strµÄ³¤¶È¡£
-Àý£ºSELECT Length(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;
-(4)¡¢Locate(substr, str)£º·µ»Ø´®strµÄÒ»¸ösubstr×Ó´®µÄµÚÒ»¸ö×Ö·û³öÏÖµÄÎ»ÖÃ,Èç¹ûsubstr²»ÔÙstrÖÐÔò·µ»Ø0¡£¸Ãº¯ÊýµÄÁíÒ»¸ö°æ±¾ÊÇLocate(substr,str,pos),±íÊ¾´ÓposÎ»ÖÃ¿ªÊ¼ÔÚstrÖÐÑ°ÕÒsubstr¡£
-Àý£ºSELECT Locate('ACM', vend_name) FROM vendors ORDER BY vend_name;
-×¢Òâ£º
-1¡¢ORDER BY×Ó¾ä±ØÐëÎ»ÓÚFROM×Ó¾äÖ®ºó¡£
-2¡¢µ±ORDER BY ×Ó¾äºÍLIMIT×Ó¾äÍ¬Ê±Ê¹ÓÃÊ±LIMIT×Ó¾ä±ØÐëÎ»ÓÚORDER BY×Ó¾äÖ®ºó¡£
-3¡¢Í¬Ê±Ê¹ÓÃWHERE×Ó¾äºÍORDER BY×Ó¾äÊ±Ó¦½«ORDER BY×Ó¾äÖÃÓÚWHERE×Ó¾äÖ®ºó¡£
-4¡¢WHERE×Ó¾äÖ§³Ö =¡¢>¡¢<¡¢!=¡¢<>(²»µÈÓÚ)¡¢>=¡¢<=¡¢BETWEEN(Ö¸¶¨µÄÁ½¸öÖµÖ®¼ä)¹ýÂË²Ù×÷¡£
-5¡¢ANDºÍOR²Ù×÷·û»ìºÏÊ¹ÓÃÊ±Òª×¢ÒâAND²Ù×÷·ûµÄ¼ÆËã´ÎÐò±ÈOR²Ù×÷·ûºÅµÄ¼ÆËã´ÎÐòÒª¸ß(²Ù×÷·ûÓÅÏÈ¼¶¸ß)£¬ËùÒÔÒ»°ãÓÐ¶à¸ö²Ù×÷·ûÊ±Òª¼ÓÉÏÔ²À¨ºÅÏû³ýÆçÒå(¼´Ê¹²»ÕâÑù×öÒ²ÊÇÕýÈ·µÄ)
-6¡¢MySQLÖ§³ÖÊ¹ÓÃNOT¶ÔIN¡¢BETWEENºÍEXISTS×Ó¾äÈ¡·´(ÆäËûDBMSÔÊÐíÊ¹ÓÃNOT¶Ô¸÷ÖÖÌõ¼þÈ¡·´)¡£
-7¡¢Î²¿Õ¸ñ¿ÉÄÜ»á¸ÉÈÅÍ¨Åä·ûÆ¥Åä£¬ÀýÈç£º'%anvil'Èç¹ûanvilºóÓÐÒ»¸ö¿Õ¸ñÔò²»»á±»Æ¥Åä³öÀ´¡£¿ÉÊ¹ÓÃ'%anvil%'»òÕßÊ¹ÓÃº¯Êý½â¾ö´ËÎÊÌâ¡£
-8¡¢%Í¨Åä·û²»»áÆ¥Åäµ½NULL¡£
-9¡¢SELECTÓï¾äµÄÆ´½ÓÍê³ÉµÄÁÐÊÇÃ»ÓÐÃû×ÖµÄ£¬ËüÖ»ÊÇÒ»¸öÖµ£¬ÕâÖÖÊÇÎÞ·¨ÔÚ¿Í»§»úÖÐÖ±½ÓÊ¹ÓÃµÄ£¬ËùÒÔ¿ÉÒÔÓÃAS¹Ø¼ü×Ö¸³ÓèÒ»¸ö±ðÃû(Ò²³ÆÎªµ¼³öÁÐ)¡£
-ÀýÈç£ºSELECT Concat(vend_name,'(',vend_country,')') AS vend_title FROM vendors ORDER BY vend_name;
-¾Û¼¯º¯Êý£º
-ÔËÐÐÔÚÐÐ×éÉÏ£¬¼ÆËãºÍ·µ»Øµ¥¸öÖµµÄº¯Êý£¨ÐèÒª»ã×ÜÊý¾Ý¶ø²»ÐèÒª¼ìË÷³öÀ´£©
+AND    
+ç”¨æ¥æŒ‡ç¤ºæ£€ç´¢æ»¡è¶³ æ‰€æœ‰ ç»™å®šæ¡ä»¶çš„è¡Œã€‚   
+OR      
+ç”¨æ¥è¡¨ç¤ºæ£€ç´¢åŒ¹é… ä»»ä¸€ ç»™å®šæ¡ä»¶çš„è¡Œã€‚   
+IN       
+ç”¨åœ¨WHEREå­å¥ä¸­çš„å…³é”®å­—ï¼Œç”¨æ¥æŒ‡å®šè¦åŒ¹é…å€¼çš„æ¸…å•çš„å…³é”®å­—(å–åˆæ³•å€¼çš„ç”±é€—å·åˆ†å‰²å¼€çš„æ¸…å•ï¼Œå…¨åœ¨åœ†æ‹¬å·ä¸­)ï¼ŒåŠŸèƒ½ä¸ŽORç›¸å½“ã€‚    
+NOT   
+ç”¨åœ¨WHEREå­å¥ä¸­çš„å…³é”®å­—ï¼Œç”¨æ¥å¦å®šå®ƒä¹‹åŽæ‰€è·Ÿçš„ä»»ä½•æ¡ä»¶ã€‚   
+BETWEEN     
+ç”¨åœ¨WHEREå­å¥ä¸­çš„å…³é”®å­—ï¼Œç”¨æ¥æ£€æŸ¥æŸä¸ªèŒƒå›´çš„å€¼ã€‚     
+é€šé…ç¬¦         
+ç”¨æ¥åŒ¹é…å€¼çš„ä¸€éƒ¨åˆ†çš„ç‰¹æ®Šå­—ç¬¦ã€‚ä¸ºåœ¨æœç´¢å­å¥ä¸­ä½¿ç”¨é€šé…ç¬¦ï¼Œå¿…é¡»ä½¿ç”¨LIKEè°“è¯ã€‚LIKEæŒ‡ç¤ºMySQLåŽè·Ÿçš„æœç´¢æ¨¡å¼åˆ©ç”¨é€šé…ç¬¦åŒ¹é…è€Œä¸æ˜¯ç›´æŽ¥ç›¸ç­‰åŒ¹é…è¿›è¡Œæ¯”è¾ƒã€‚
 
-ACG(column)£º·µ»ØÄ³ÁÐµÄÆ½¾ùÖµ¡£
-COUNT(column)£º·µ»ØÄ³ÁÐµÄÐÐÊý¡£ 
-COUNT(*)£º·µ»ØËùÓÐÁÐµÄºÍ¡£
-MIN(column)£º·µ»ØÄ³ÁÐµÄ×îÐ¡Öµ¡£
-MAX(column)£º·µ»ØÄ³ÁÐµÄ×î´óÖµ¡£
-SUM(column)£º·µ»ØÄ³ÁÐµÄºÍ¡£
-DISTINCT£ºÖ»°üº¬²»Í¬Öµ
-·Ö×é£º
-·Ö×éÔÊÐí°ÑÊý¾Ý·ÖÎª¶à¸öÂß¼­×é£¬ÒÔ±ãÄÜ¶ÔÃ¿¸ö×é½øÐÐ¾Û¼¯¼ÆËã¡£
+%é€šé…ç¬¦ï¼š       
+è¡¨ç¤ºä»»ä½•å­—ç¬¦å‡ºçŽ°çš„ä»»ä¸€æ¬¡æ•°ã€‚   
+_é€šé…ç¬¦ï¼š     
+ä¸‹åˆ’çº¿é€šé…ç¬¦ _ ç”¨é€”ä¸Ž%ä¸€æ ·ï¼Œä½†ä¸‹åˆ’çº¿åªåŒ¹é…å•ä¸ªå­—ç¬¦è€Œä¸æ˜¯å¤šä¸ªå­—ç¬¦ã€‚     
 
-´´½¨·Ö×é£ºGROUP BY×Ó¾ä£¬GROUP BY×Ó¾ä±ØÐë³öÏÖÔÚWHERE×Ó¾äÖ®ºó£¬ORDER BY×Ó¾äÖ®Ç°¡£
-WITH ROLLUP£º¿ÉÒÔµÃµ½Ã¿¸ö·Ö×é»ã×Ü¼¶±ðµÄÖµ£¨ºÍORDER BY×Ó¾ä»¥³â£©¡£
-HAVING£ºHAVING¹ýÂË·Ö×é£¬WHERE¹ýÂËÁÐ£¬HAVINGÎ»ÓÚGROUP BY×Ó¾äÖ®Ç°£¬HAVINGÎ»ÓÚGROUP BY×Ó¾äÖ®ºó¡££¨WHEREÔÚ·Ö×éÇ°½øÐÐ¹ýÂË£¬HAVINGÔÚ·Ö×éºó½øÐÐ¹ýÂË£©
-GROUP BYºÍORDER BY×Ó¾äµÄÇø±ð£º
-1¡¢OEDER BYÊÇÅÅÐòºóµÄÊä³ö¶øGROUP BYÊÇ·Ö×éµÄË³Ðò£¨²»Ò»¶¨ÊÇÆÚÍûÊä³öµÄË³Ðò£©
-2¡¢ORDER BYÈÎÒâÁÐ¶¼¿ÉÒÔÊ¹ÓÃ£¬¶øGROUP BYÖ»¿ÉÄÜÊ¹ÓÃÑ¡ÔñÁÐ»ò±í´ïÊ½ÁÐ£¬¶øÇÒ±ØÐëÊ¹ÓÃÃ¿¸öÑ¡ÔñÁÐ±í´ïÊ½¡£
-3¡¢ORDER BY²»ÊÇ±ØÐë³öÏÖÔÚSQLÓï¾äÖÐ£¬µ«ÊÇÈç¹ûÓë¾Û¼¯º¯ÊýÒ»ÆðÊ¹ÓÃÁÐ£¨»ò±í´ïÊ½£©GROUP BY×Ó¾ä±ØÐë´æÔÚÓÚSQLÓï¾äÖÐ¡£
+é€šé…ç¬¦ä½¿ç”¨æŠ€å·§     
+1ã€ä¸è¦è¿‡åº¦ä½¿ç”¨é€šé…ç¬¦ã€‚å¦‚æžœå…¶ä»–æ“ä½œèƒ½è¾¾åˆ°ç›¸åŒçš„ç›®çš„ï¼Œåº”è¯¥ä½¿ç”¨å…¶ä»–æ“ä½œç¬¦ã€‚         
+2ã€åœ¨ç¡®å®žéœ€è¦ä½¿ç”¨é€šé…ç¬¦æ—¶é™¤éžç»å¯¹æœ‰å¿…è¦ï¼Œå¦åˆ™ä¸è¦æŠŠå®ƒä»¬ç”¨åœ¨æœç´¢æ¨¡å¼çš„æœ€å¼€å§‹å¤„ï¼Œå› ä¸ºè¿™æ ·æ˜¯æœ€æ…¢çš„ã€‚      
+3ã€ä»”ç»†æ³¨æ„é€šé…ç¬¦çš„ä½ç½®ã€‚å¦‚æžœæ”¾é”™åœ°æ–¹ï¼Œå¯èƒ½ä¸ä¼šè¿”å›žæƒ³è¦çš„æ•°æ®ã€‚       
 
 
-×Ó²éÑ¯
-1£©×Ó²éÑ¯¸ÅÄî£ºµ±Ò»¸ö²éÑ¯ÊÇÁíÒ»¸ö²éÑ¯µÄ×Ó²¿·ÖÊ±£¬³ÆÖ®Îª×Ó²éÑ¯£¨²éÑ¯Óï¾äÖÐÇ¶Ì×ÓÐ²éÑ¯Óï¾ä£©¡£
+#### è®¡ç®—å­—æ®µ
+1ã€Concatæ‹¼æŽ¥å­—æ®µï¼š
+æŠŠå¤šä¸ªä¸²é“¾æŽ¥èµ·æ¥å½¢æˆä¸€ä¸ªè¾ƒé•¿çš„ä¸²ï¼Œéœ€è¦ä¸€ä¸ªæˆ–å¤šä¸ªæŒ‡å®šçš„ä¸²ï¼Œå„ä¸ªä¸²ä¹‹é—´ç”¨é€—å·éš”å¼€ã€‚   
+ä¾‹å¦‚ï¼šSELECT Concat(vend_name,'(',vend_country,')') FROM vendors ORDER BY vend_name;
+2ã€åŽ»æŽ‰è¿”å›žçš„å€¼ä¸­çš„ç©ºæ ¼ï¼š  
+(1)ã€RTrim()åŽ»æŽ‰å³ä¾§å¤šä½™çš„ç©ºæ ¼æ¥æ•´ç†æ•°æ®ã€‚  
+(2)ã€LTrim()åŽ»æŽ‰å·¦ä¾§å¤šä½™çš„ç©ºæ ¼æ¥æ•´ç†æ•°æ®ã€‚  
+(3)ã€Trim()åŽ»æŽ‰å·¦å³ä¸¤è¾¹å¤šä½™çš„ç©ºæ ¼æ¥æ•´ç†æ•°æ®ã€‚   
+3ã€æ‰§è¡Œç®—æ•°è¿ç®—(MySQLæ”¯æŒ åŠ å‡ä¹˜é™¤è¿ç®—å’Œåœ†æ‹¬å·æ”¹å˜è¿ç®—ä¼˜å…ˆçº§)ï¼š  
+è®¡ç®—å­—æ®µå¦ä¸€ä¸ªç”¨é€”å°±æ˜¯å¯¹æ£€ç´¢å‡ºçš„æ•°æ®è¿›è¡Œç®—æœ¯è®¡ç®—ã€‚      
+ä¾‹å¦‚ï¼šSELECT prod_id, quantity, item_price, quantity * item_price AS expanded_price FROM orderitems WHERE order_num = 20005;
 
-×Ó²éÑ¯³öÏÖµÄÎ»ÖÃÓÐ£º
+#### äº‹ä»¶å¤„ç†å‡½æ•°
+å‡½æ•°ä¸€èˆ¬æ˜¯åœ¨æ•°æ®ä¸Šæ‰§è¡Œçš„ï¼Œå®ƒç»™æ•°æ®çš„è½¬æ¢å’Œå¤„ç†æä¾›äº†æ–¹ä¾¿ã€‚å¤§å¤šæ•°SQLå®žçŽ°æ”¯æŒç”¨äºŽå¤„ç†æ–‡æœ¬ä¸²çš„å‡½æ•°ã€ç”¨äºŽåœ¨æ•°å€¼æ•°æ®ä¸Šè¿›è¡Œç®—æœ¯è¿ç®—æ“ä½œçš„å‡½æ•°ã€ç”¨äºŽå¤„ç†æ—¥æœŸå’Œæ—¶é—´å¹¶æå–ç‰¹å®šæˆåˆ†çš„æ—¥æœŸå’Œæ—¶é—´å‡½æ•°ã€è¿”å›žDBMSæ­£ä½¿ç”¨çš„ç‰¹æ®Šä¿¡æ¯çš„å‡½æ•°
+1ã€å¸¸è§çš„æ–‡æœ¬å¤„ç†å‡½æ•°ï¼š
+(1)ã€Upper(str)ï¼šå°†æ–‡æœ¬strè½¬æ¢ä¸ºå¤§å†™ã€‚    
+ä¾‹ï¼šSELECT Upper(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;
+(2)ã€Left(str, len)ï¼šè¿”å›žä¸²strå·¦è¾¹çš„lenä¸ªå­—ç¬¦ã€‚      
+ä¾‹ï¼šSELECT Left(vend_name, 3) AS vend_name_upcase FROM vendors ORDER BY vend_name;
+(3)ã€Length(str)ï¼šè¿”å›žä¸²strçš„é•¿åº¦ã€‚     
+ä¾‹ï¼šSELECT Length(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;
+(4)ã€Locate(substr, str)ï¼šè¿”å›žä¸²strçš„ä¸€ä¸ªsubstrå­ä¸²çš„ç¬¬ä¸€ä¸ªå­—ç¬¦å‡ºçŽ°çš„ä½ç½®,å¦‚æžœsubsträ¸å†strä¸­åˆ™è¿”å›ž0ã€‚è¯¥å‡½æ•°çš„å¦ä¸€ä¸ªç‰ˆæœ¬æ˜¯   Locate(substr,str,pos),è¡¨ç¤ºä»Žposä½ç½®å¼€å§‹åœ¨strä¸­å¯»æ‰¾substrã€‚
+ä¾‹ï¼šSELECT Locate('ACM', vend_name) FROM vendors ORDER BY vend_name;  
 
-a£©Ä¿±êÁÐÎ»ÖÃ£º×Ó²éÑ¯Èç¹ûÎ»ÓÚÄ¿±êÁÐ£¬ÔòÖ»ÄÜÊÇ±êÁ¿×Ó²éÑ¯£¬·ñÔòÊý¾Ý¿â¿ÉÄÜ·µ»ØÀàËÆ¡°´íÎó:  ×Ó²éÑ¯±ØÐëÖ»ÄÜ·µ»ØÒ»¸ö×Ö¶Î¡±µÄÌáÊ¾¡£
+æ³¨æ„ï¼š
+1ã€ORDER BYå­å¥å¿…é¡»ä½äºŽFROMå­å¥ä¹‹åŽã€‚   
+2ã€å½“ORDER BY å­å¥å’ŒLIMITå­å¥åŒæ—¶ä½¿ç”¨æ—¶LIMITå­å¥å¿…é¡»ä½äºŽORDER BYå­å¥ä¹‹åŽ     
+3ã€åŒæ—¶ä½¿ç”¨WHEREå­å¥å’ŒORDER BYå­å¥æ—¶åº”å°†ORDER BYå­å¥ç½®äºŽWHEREå­å¥ä¹‹åŽã€‚      
+4ã€WHEREå­å¥æ”¯æŒ =ã€>ã€<ã€!=ã€<>(ä¸ç­‰äºŽ)ã€>=ã€<=ã€BETWEEN(æŒ‡å®šçš„ä¸¤ä¸ªå€¼ä¹‹é—´)è¿‡æ»¤æ“ä½œã€‚   
+5ã€ANDå’ŒORæ“ä½œç¬¦æ··åˆä½¿ç”¨æ—¶è¦æ³¨æ„ANDæ“ä½œç¬¦çš„è®¡ç®—æ¬¡åºæ¯”ORæ“ä½œç¬¦å·çš„è®¡ç®—æ¬¡åºè¦é«˜(æ“ä½œç¬¦ä¼˜å…ˆçº§é«˜)ï¼Œæ‰€ä»¥ä¸€èˆ¬æœ‰å¤šä¸ªæ“ä½œç¬¦æ—¶è¦åŠ ä¸Šåœ†æ‹¬å·æ¶ˆé™¤æ­§ä¹‰(å³ä½¿ä¸è¿™æ ·åšä¹Ÿæ˜¯æ­£ç¡®çš„)       
+6ã€MySQLæ”¯æŒä½¿ç”¨NOTå¯¹INã€BETWEENå’ŒEXISTSå­å¥å–å(å…¶ä»–DBMSå…è®¸ä½¿ç”¨NOTå¯¹å„ç§æ¡ä»¶å–å)ã€‚
+7ã€å°¾ç©ºæ ¼å¯èƒ½ä¼šå¹²æ‰°é€šé…ç¬¦åŒ¹é…ï¼Œä¾‹å¦‚ï¼š'%anvil'å¦‚æžœanvilåŽæœ‰ä¸€ä¸ªç©ºæ ¼åˆ™ä¸ä¼šè¢«åŒ¹é…å‡ºæ¥ã€‚å¯ä½¿ç”¨'%anvil%'æˆ–è€…ä½¿ç”¨å‡½æ•°è§£å†³æ­¤é—®é¢˜ã€‚
+8ã€%é€šé…ç¬¦ä¸ä¼šåŒ¹é…åˆ°NULLã€‚
+9ã€SELECTè¯­å¥çš„æ‹¼æŽ¥å®Œæˆçš„åˆ—æ˜¯æ²¡æœ‰åå­—çš„ï¼Œå®ƒåªæ˜¯ä¸€ä¸ªå€¼ï¼Œè¿™ç§æ˜¯æ— æ³•åœ¨å®¢æˆ·æœºä¸­ç›´æŽ¥ä½¿ç”¨çš„ï¼Œæ‰€ä»¥å¯ä»¥ç”¨ASå…³é”®å­—èµ‹äºˆä¸€ä¸ªåˆ«å(ä¹Ÿç§°ä¸ºå¯¼å‡ºåˆ—)ã€‚
+ä¾‹å¦‚ï¼šSELECT Concat(vend_name,'(',vend_country,')') AS vend_title FROM vendors ORDER BY vend_name;
 
-b£©FROM×Ó¾äÎ»ÖÃ£ºÏà¹Ø×Ó²éÑ¯³öÏÖÔÚFROM×Ó¾äÖÐ£¬Êý¾Ý¿â¿ÉÄÜ·µ»ØÀàËÆ¡°ÔÚFROM×Ó¾äÖÐµÄ×Ó²éÑ¯ÎÞ·¨²Î¿¼ÏàÍ¬²éÑ¯¼¶±ðÖÐµÄ¹ØÏµ¡±µÄÌáÊ¾£¬ËùÒÔÏà¹Ø×Ó²éÑ¯²»ÄÜ³öÏÖÔÚFROM×Ó¾äÖÐ£»·ÇÏà¹Ø×Ó²éÑ¯³öÏÖÔÚFROM×Ó¾äÖÐ£¬¿ÉÉÏÀ­×Ó²éÑ¯µ½¸¸²ã£¬ÔÚ¶à±íÁ¬½ÓÊ±Í³Ò»¿¼ÂÇÁ¬½Ó´ú¼ÛÈ»ºóÔñÓÅ¡£
+### èšé›†å‡½æ•°ï¼š
 
-c£©WHERE×Ó¾äÎ»ÖÃ£º³öÏÖÔÚWHERE×Ó¾äÖÐµÄ×Ó²éÑ¯£¬ÊÇÒ»¸öÌõ¼þ±í´ïÊ½µÄÒ»²¿·Ö£¬¶ø±í´ïÊ½¿ÉÒÔ·Ö½âÎª²Ù×÷·ûºÍ²Ù×÷Êý£»¸ù¾Ý²ÎÓëÔËËãµÄ²»Í¬µÄÊý¾ÝÀàÐÍ£¬²Ù×÷·ûÒ²²»¾¡ÏàÍ¬£¬ÈçINTÐÍÓÐ¡°>¡¢<¡¢=¡¢<>¡±µÈ²Ù×÷£¬Õâ¶Ô×Ó²éÑ¯¾ùÓÐÒ»¶¨µÄÒªÇó£¨ÈçINTÐÍµÄµÈÖµ²Ù×÷£¬ÒªÇó×Ó²éÑ¯±ØÐëÊÇ±êÁ¿×Ó²éÑ¯£©¡£ÁíÍâ£¬×Ó²éÑ¯³öÏÖÔÚWHERE×Ó¾äÖÐµÄ¸ñÊ½£¬Ò²ÓÐÓÃÎ½´ÊÖ¸¶¨µÄÒ»Ð©²Ù×÷£¬ÈçIN¡¢BETWEEN¡¢EXISTSµÈ¡£
+è¿è¡Œåœ¨è¡Œç»„ä¸Šï¼Œè®¡ç®—å’Œè¿”å›žå•ä¸ªå€¼çš„å‡½æ•°ï¼ˆéœ€è¦æ±‡æ€»æ•°æ®è€Œä¸éœ€è¦æ£€ç´¢å‡ºæ¥ï¼‰
 
-d£©JOIN/ON×Ó¾äÎ»ÖÃ£ºJOIN/ON×Ó¾ä¿ÉÒÔ²ð·ÖÎªÁ½²¿·Ö£¬Ò»ÊÇJOIN¿éÀàËÆÓÚFROM×Ó¾ä£¬¶þÊÇON×Ó¾ä¿éÀàËÆÓÚWHERE×Ó¾ä£¬ÕâÁ½²¿·Ö¶¼¿ÉÒÔ³öÏÖ×Ó²éÑ¯¡£×Ó²éÑ¯µÄ´¦Àí·½Ê½Í¬FROM×Ó¾äºÍWHERE×Ó¾ä¡£
+ACG(column)ï¼šè¿”å›žæŸåˆ—çš„å¹³å‡å€¼ã€‚  
+COUNT(column)ï¼šè¿”å›žæŸåˆ—çš„è¡Œæ•°ã€‚  
+COUNT(*)ï¼šè¿”å›žæ‰€æœ‰åˆ—çš„å’Œã€‚  
+MIN(column)ï¼šè¿”å›žæŸåˆ—çš„æœ€å°å€¼ã€‚  
+MAX(column)ï¼šè¿”å›žæŸåˆ—çš„æœ€å¤§å€¼ã€‚  
+SUM(column)ï¼šè¿”å›žæŸåˆ—çš„å’Œã€‚  
+DISTINCTï¼šåªåŒ…å«ä¸åŒå€¼  
+åˆ†ç»„ï¼š
+åˆ†ç»„å…è®¸æŠŠæ•°æ®åˆ†ä¸ºå¤šä¸ªé€»è¾‘ç»„ï¼Œä»¥ä¾¿èƒ½å¯¹æ¯ä¸ªç»„è¿›è¡Œèšé›†è®¡ç®—ã€‚  
 
-e£©GROUPBY×Ó¾äÎ»ÖÃ£ºÄ¿±êÁÐ±ØÐëºÍGROUPBY¹ØÁª1¡£¿É½«×Ó²éÑ¯Ð´ÔÚGROUPBYÎ»ÖÃ´¦£¬µ«×Ó²éÑ¯ÓÃÔÚGROUPBY´¦Ã»ÓÐÊµÓÃÒâÒå¡£
+åˆ›å»ºåˆ†ç»„ï¼šGROUP BYå­å¥ï¼ŒGROUP BYå­å¥å¿…é¡»å‡ºçŽ°åœ¨WHEREå­å¥ä¹‹åŽï¼ŒORDER BYå­å¥ä¹‹å‰ã€‚   
+WITH ROLLUPï¼šå¯ä»¥å¾—åˆ°æ¯ä¸ªåˆ†ç»„æ±‡æ€»çº§åˆ«çš„å€¼ï¼ˆå’ŒORDER BYå­å¥äº’æ–¥ï¼‰ã€‚   
+HAVINGï¼šHAVINGè¿‡æ»¤åˆ†ç»„ï¼ŒWHEREè¿‡æ»¤åˆ—ï¼ŒHAVINGä½äºŽGROUP BYå­å¥ä¹‹å‰ï¼ŒHAVINGä½äºŽGROUP BYå­å¥ä¹‹åŽã€‚ï¼ˆWHEREåœ¨åˆ†ç»„å‰è¿›è¡Œè¿‡æ»¤ï¼ŒHAVINGåœ¨åˆ†ç»„åŽè¿›è¡Œè¿‡æ»¤ï¼‰
 
-f£©ORDERBY×Ó¾äÎ»ÖÃ£º¿É½«×Ó²éÑ¯Ð´ÔÚORDERBYÎ»ÖÃ´¦¡£µ«ORDERBY²Ù×÷ÊÇ×÷ÓÃÔÚÕûÌõSQLÓï¾äÉÏµÄ£¬×Ó²éÑ¯ÓÃÔÚORDERBY´¦Ã»ÓÐÊµÓÃÒâÒå¡£
+GROUP BYå’ŒORDER BYå­å¥çš„åŒºåˆ«ï¼š
+1ã€OEDER BYæ˜¯æŽ’åºåŽçš„è¾“å‡ºè€ŒGROUP BYæ˜¯åˆ†ç»„çš„é¡ºåºï¼ˆä¸ä¸€å®šæ˜¯æœŸæœ›è¾“å‡ºçš„é¡ºåºï¼‰    
+2ã€ORDER BYä»»æ„åˆ—éƒ½å¯ä»¥ä½¿ç”¨ï¼Œè€ŒGROUP BYåªå¯èƒ½ä½¿ç”¨é€‰æ‹©åˆ—æˆ–è¡¨è¾¾å¼åˆ—ï¼Œè€Œä¸”å¿…é¡»ä½¿ç”¨æ¯ä¸ªé€‰æ‹©åˆ—è¡¨è¾¾å¼ã€‚  
+3ã€ORDER BYä¸æ˜¯å¿…é¡»å‡ºçŽ°åœ¨SQLè¯­å¥ä¸­ï¼Œä½†æ˜¯å¦‚æžœä¸Žèšé›†å‡½æ•°ä¸€èµ·ä½¿ç”¨åˆ—ï¼ˆæˆ–è¡¨è¾¾å¼ï¼‰GROUP BYå­å¥å¿…é¡»å­˜åœ¨äºŽSQLè¯­å¥ä¸­ã€‚   
 
-2£©×Ó²éÑ¯µÄ·ÖÀà
 
-´Ó¶ÔÏó¼äµÄ¹ØÏµ¿´£º
+### å­æŸ¥è¯¢  
+1ï¼‰å­æŸ¥è¯¢æ¦‚å¿µï¼šå½“ä¸€ä¸ªæŸ¥è¯¢æ˜¯å¦ä¸€ä¸ªæŸ¥è¯¢çš„å­éƒ¨åˆ†æ—¶ï¼Œç§°ä¹‹ä¸ºå­æŸ¥è¯¢ï¼ˆæŸ¥è¯¢è¯­å¥ä¸­åµŒå¥—æœ‰æŸ¥è¯¢è¯­å¥ï¼‰ã€‚   
 
-a£©Ïà¹Ø×Ó²éÑ¯¡£
+å­æŸ¥è¯¢å‡ºçŽ°çš„ä½ç½®æœ‰ï¼š
 
-×Ó²éÑ¯µÄÖ´ÐÐÒÀÀµÓÚÍâ²ã¸¸²éÑ¯µÄÒ»Ð©ÊôÐÔÖµ¡£×Ó²éÑ¯ÒòÒÀÀµÓÚ¸¸²éÑ¯µÄ²ÎÊý£¬µ±¸¸²éÑ¯µÄ²ÎÊý¸Ä±äÊ±£¬×Ó²éÑ¯ÐèÒª¸ù¾ÝÐÂ²ÎÊýÖµÖØÐÂÖ´ÐÐ£¨²éÑ¯ÓÅ»¯Æ÷¶ÔÏà¹Ø×Ó²éÑ¯½øÐÐÓÅ»¯ÓÐÒ»¶¨ÒâÒå£©£¬Èç£º
+aï¼‰ç›®æ ‡åˆ—ä½ç½®ï¼šå­æŸ¥è¯¢å¦‚æžœä½äºŽç›®æ ‡åˆ—ï¼Œåˆ™åªèƒ½æ˜¯æ ‡é‡å­æŸ¥è¯¢ï¼Œå¦åˆ™æ•°æ®åº“å¯èƒ½è¿”å›žç±»ä¼¼â€œé”™è¯¯:  å­æŸ¥è¯¢å¿…é¡»åªèƒ½è¿”å›žä¸€ä¸ªå­—æ®µâ€çš„æç¤ºã€‚
 
-SELECT * FROM t1 WHERE col_1 = ANY
+bï¼‰FROMå­å¥ä½ç½®ï¼šç›¸å…³å­æŸ¥è¯¢å‡ºçŽ°åœ¨FROMå­å¥ä¸­ï¼Œæ•°æ®åº“å¯èƒ½è¿”å›žç±»ä¼¼â€œåœ¨FROMå­å¥ä¸­çš„å­æŸ¥è¯¢æ— æ³•å‚è€ƒç›¸åŒæŸ¥è¯¢çº§åˆ«ä¸­çš„å…³ç³»â€çš„æç¤ºï¼Œæ‰€ä»¥ç›¸å…³å­æŸ¥è¯¢ä¸èƒ½å‡ºçŽ°åœ¨FROMå­å¥ä¸­ï¼›éžç›¸å…³å­æŸ¥è¯¢å‡ºçŽ°åœ¨FROMå­å¥ä¸­ï¼Œå¯ä¸Šæ‹‰å­æŸ¥è¯¢åˆ°çˆ¶å±‚ï¼Œåœ¨å¤šè¡¨è¿žæŽ¥æ—¶ç»Ÿä¸€è€ƒè™‘è¿žæŽ¥ä»£ä»·ç„¶åŽæ‹©ä¼˜ã€‚
 
- (SELECT col_1 FROM t2 WHERE t2.col_2 = t1.col_2);
+cï¼‰WHEREå­å¥ä½ç½®ï¼šå‡ºçŽ°åœ¨WHEREå­å¥ä¸­çš„å­æŸ¥è¯¢ï¼Œæ˜¯ä¸€ä¸ªæ¡ä»¶è¡¨è¾¾å¼çš„ä¸€éƒ¨åˆ†ï¼Œè€Œè¡¨è¾¾å¼å¯ä»¥åˆ†è§£ä¸ºæ“ä½œç¬¦å’Œæ“ä½œæ•°ï¼›æ ¹æ®å‚ä¸Žè¿ç®—çš„ä¸åŒçš„æ•°æ®ç±»åž‹ï¼Œæ“ä½œç¬¦ä¹Ÿä¸å°½ç›¸åŒï¼Œå¦‚INTåž‹æœ‰â€œ>ã€<ã€=ã€<>â€ç­‰æ“ä½œï¼Œè¿™å¯¹å­æŸ¥è¯¢å‡æœ‰ä¸€å®šçš„è¦æ±‚ï¼ˆå¦‚INTåž‹çš„ç­‰å€¼æ“ä½œï¼Œè¦æ±‚å­æŸ¥è¯¢å¿…é¡»æ˜¯æ ‡é‡å­æŸ¥è¯¢ï¼‰ã€‚å¦å¤–ï¼Œå­æŸ¥è¯¢å‡ºçŽ°åœ¨WHEREå­å¥ä¸­çš„æ ¼å¼ï¼Œä¹Ÿæœ‰ç”¨è°“è¯æŒ‡å®šçš„ä¸€äº›æ“ä½œï¼Œå¦‚INã€BETWEENã€EXISTSç­‰ã€‚   
 
-/* ×Ó²éÑ¯Óï¾äÖÐ´æÔÚ¸¸²éÑ¯µÄt1±íµÄcol_2ÁÐ */
+dï¼‰JOIN/ONå­å¥ä½ç½®ï¼šJOIN/ONå­å¥å¯ä»¥æ‹†åˆ†ä¸ºä¸¤éƒ¨åˆ†ï¼Œä¸€æ˜¯JOINå—ç±»ä¼¼äºŽFROMå­å¥ï¼ŒäºŒæ˜¯ONå­å¥å—ç±»ä¼¼äºŽWHEREå­å¥ï¼Œè¿™ä¸¤éƒ¨åˆ†éƒ½å¯ä»¥å‡ºçŽ°å­æŸ¥è¯¢ã€‚å­æŸ¥è¯¢çš„å¤„ç†æ–¹å¼åŒFROMå­å¥å’ŒWHEREå­å¥ã€‚      
 
-b£©·ÇÏà¹Ø×Ó²éÑ¯¡£
+eï¼‰GROUPBYå­å¥ä½ç½®ï¼šç›®æ ‡åˆ—å¿…é¡»å’ŒGROUPBYå…³è”1ã€‚å¯å°†å­æŸ¥è¯¢å†™åœ¨GROUPBYä½ç½®å¤„ï¼Œä½†å­æŸ¥è¯¢ç”¨åœ¨GROUPBYå¤„æ²¡æœ‰å®žç”¨æ„ä¹‰ã€‚
 
-×Ó²éÑ¯µÄÖ´ÐÐ£¬²»ÒÀÀµÓÚÍâ²ã¸¸²éÑ¯µÄÈÎºÎÊôÐÔÖµ¡£ÕâÑù×Ó²éÑ¯¾ßÓÐ¶ÀÁ¢ÐÔ£¬¿É¶À×ÔÇó½â£¬ÐÎ³ÉÒ»¸ö×Ó²éÑ¯¼Æ»®ÏÈÓÚÍâ²ãµÄ²éÑ¯Çó½â£¬Èç£º
+fï¼‰ORDERBYå­å¥ä½ç½®ï¼šå¯å°†å­æŸ¥è¯¢å†™åœ¨ORDERBYä½ç½®å¤„ã€‚ä½†ORDERBYæ“ä½œæ˜¯ä½œç”¨åœ¨æ•´æ¡SQLè¯­å¥ä¸Šçš„ï¼Œå­æŸ¥è¯¢ç”¨åœ¨ORDERBYå¤„æ²¡æœ‰å®žç”¨æ„ä¹‰ã€‚
 
-SELECT * FROM t1 WHERE col_1 = ANY
+### å­æŸ¥è¯¢çš„ä¼˜åŒ–æ–¹æ³•
 
-(SELECT col_1 FROM t2 WHERE t2.col_2 = 10);
+aï¼‰å­æŸ¥è¯¢åˆå¹¶ï¼ˆSubquery Coalescingï¼‰
 
-//×Ó²éÑ¯Óï¾äÖÐ£¨t2£©²»´æÔÚ¸¸²éÑ¯£¨t1£©µÄÊôÐÔ
-
-´ÓÌØ¶¨Î½´Ê¿´£º
-
-a£©[NOT] IN/ALL/ANY/SOME×Ó²éÑ¯¡£
-
-ÓïÒåÏà½ü£¬±íÊ¾¡°[È¡·´] ´æÔÚ/ËùÓÐ/ÈÎºÎ/ÈÎºÎ¡±£¬×óÃæÊÇ²Ù×÷Êý£¬ÓÒÃæÊÇ×Ó²éÑ¯£¬ÊÇ×î³£¼ûµÄ×Ó²éÑ¯ÀàÐÍÖ®Ò»¡£
-
-b£©[NOT] EXISTS×Ó²éÑ¯¡£
-
-°ëÁ¬½ÓÓïÒå£¬±íÊ¾¡°[È¡·´] ´æÔÚ¡±£¬Ã»ÓÐ×ó²Ù×÷Êý£¬ÓÒÃæÊÇ×Ó²éÑ¯£¬Ò²ÊÇ×î³£¼ûµÄ×Ó²éÑ¯ÀàÐÍÖ®Ò»¡£
-
-c£©ÆäËû×Ó²éÑ¯¡£
-
-³ýÁËÉÏÊöÁ½ÖÖÍâµÄËùÓÐ×Ó²éÑ¯¡£
-
-´ÓÓï¾äµÄ¹¹³É¸´ÔÓ³Ì¶È¿´£º
-
-a£©SPJ×Ó²éÑ¯¡£
-
-ÓÉÑ¡Ôñ¡¢Á¬½Ó¡¢Í¶Ó°²Ù×÷×é³ÉµÄ²éÑ¯¡£
-
-b£©GROUPBY×Ó²éÑ¯¡£
-
-SPJ×Ó²éÑ¯¼ÓÉÏ·Ö×é¡¢¾Û¼¯²Ù×÷×é³ÉµÄ²éÑ¯¡£
-
-c£©ÆäËû×Ó²éÑ¯¡£
-
-GROUPBY×Ó²éÑ¯ÖÐ¼ÓÉÏÆäËû×Ó¾äÈçTop-N ¡¢LIMIT/OFFSET¡¢¼¯ºÏ¡¢ÅÅÐòµÈ²Ù×÷¡£
-
-ºóÁ½ÖÖ×Ó²éÑ¯ÓÐÊ±ºÏ³Æ·ÇSPJ×Ó²éÑ¯¡£
-
-´Ó½á¹ûµÄ½Ç¶È¿´£º
-
-a£©±êÁ¿×Ó²éÑ¯¡£
-
-×Ó²éÑ¯·µ»ØµÄ½á¹û¼¯ÀàÐÍÊÇÒ»¸ö¼òµ¥Öµ¡£
-
-b£©µ¥ÐÐµ¥ÁÐ×Ó²éÑ¯¡£
-
-×Ó²éÑ¯·µ»ØµÄ½á¹û¼¯ÀàÐÍÊÇÁãÌõ»òÒ»Ìõµ¥Ôª×é¡£ÏàËÆÓÚ±êÁ¿×Ó²éÑ¯,µ«¿ÉÄÜ·µ»ØÁãÌõÔª×é¡£
-
-c£©¶àÐÐµ¥ÁÐ×Ó²éÑ¯¡£
-
-×Ó²éÑ¯·µ»ØµÄ½á¹û¼¯ÀàÐÍÊÇ¶àÌõÔª×éµ«Ö»ÓÐÒ»¸ö¼òµ¥ÁÐ¡£
-
-d£©±í×Ó²éÑ¯¡£
-
-×Ó²éÑ¯·µ»ØµÄ½á¹û¼¯ÀàÐÍÊÇÒ»¸ö±í£¨¶àÐÐ¶àÁÐ£©¡£
-
-3£©×Ó²éÑ¯µÄÓÅ»¯·½·¨
-
-a£©×Ó²éÑ¯ºÏ²¢£¨Subquery Coalescing£©
-
-ÔÚÄ³Ð©Ìõ¼þÏÂ£¨ÓïÒåµÈ¼Û£ºÁ½¸ö²éÑ¯¿é²úÉúÍ¬ÑùµÄ½á¹û¼¯£©£¬¶à¸ö×Ó²éÑ¯ÄÜ¹»ºÏ²¢³ÉÒ»¸ö×Ó²éÑ¯£¨ºÏ²¢ºó»¹ÊÇ×Ó²éÑ¯£¬ÒÔºó¿ÉÒÔÍ¨¹ýÆäËû¼¼ÊõÏû³ýµô×Ó²éÑ¯£©¡£ÕâÑù¿ÉÒÔ°Ñ¶à´Î±íÉ¨Ãè¡¢¶à´ÎÁ¬½Ó¼õÉÙÎªµ¥´Î±íÉ¨ÃèºÍµ¥´ÎÁ¬½Ó£¬Èç£º
+åœ¨æŸäº›æ¡ä»¶ä¸‹ï¼ˆè¯­ä¹‰ç­‰ä»·ï¼šä¸¤ä¸ªæŸ¥è¯¢å—äº§ç”ŸåŒæ ·çš„ç»“æžœé›†ï¼‰ï¼Œå¤šä¸ªå­æŸ¥è¯¢èƒ½å¤Ÿåˆå¹¶æˆä¸€ä¸ªå­æŸ¥è¯¢ï¼ˆåˆå¹¶åŽè¿˜æ˜¯å­æŸ¥è¯¢ï¼Œä»¥åŽå¯ä»¥é€šè¿‡å…¶ä»–æŠ€æœ¯æ¶ˆé™¤æŽ‰å­æŸ¥è¯¢ï¼‰ã€‚è¿™æ ·å¯ä»¥æŠŠå¤šæ¬¡è¡¨æ‰«æã€å¤šæ¬¡è¿žæŽ¥å‡å°‘ä¸ºå•æ¬¡è¡¨æ‰«æå’Œå•æ¬¡è¿žæŽ¥ï¼Œå¦‚ï¼š
 
 SELECT * FROM t1 WHERE a1<10 AND (
 
@@ -206,71 +139,71 @@ EXISTS (SELECT a2 FROM t2 WHERE t2.a2<5 AND t2.b2=2)
 
 );
 
-¿ÉÓÅ»¯Îª£º
+å¯ä¼˜åŒ–ä¸ºï¼š
 
 SELECT * FROM t1 WHERE a1<10 AND (
 
 EXISTS (SELECT a2 FROM t2 WHERE t2.a2<5 AND(t2.b2=1 OR t2.b2=2) 
 
-/*Á½¸öESISTS×Ó¾äºÏ²¢ÎªÒ»¸ö£¬Ìõ¼þÒ²½øÐÐÁËºÏ²¢ */
+/*ä¸¤ä¸ªESISTSå­å¥åˆå¹¶ä¸ºä¸€ä¸ªï¼Œæ¡ä»¶ä¹Ÿè¿›è¡Œäº†åˆå¹¶ */
 
 );
 
-b£©×Ó²éÑ¯Õ¹¿ª£¨Subquery Unnesting£©
+bï¼‰å­æŸ¥è¯¢å±•å¼€ï¼ˆSubquery Unnestingï¼‰
 
-ÓÖ³Æ×Ó²éÑ¯·´Ç¶Ì×£¬ÓÖ³ÆÎª×Ó²éÑ¯ÉÏÀ­¡£°ÑÒ»Ð©×Ó²éÑ¯ÖÃÓÚÍâ²ãµÄ¸¸²éÑ¯ÖÐ£¬×÷ÎªÁ¬½Ó¹ØÏµÓëÍâ²ã¸¸²éÑ¯²¢ÁÐ£¬ÆäÊµÖÊÊÇ°ÑÄ³Ð©×Ó²éÑ¯ÖØÐ´ÎªµÈ¼ÛµÄ¶à±íÁ¬½Ó²Ù×÷£¨Õ¹¿ªºó£¬×Ó²éÑ¯²»´æÔÚÁË£¬Íâ²¿²éÑ¯±ä³ÉÁË¶à±íÁ¬½Ó£©¡£´øÀ´µÄºÃ´¦ÊÇ£¬ÓÐ¹ØµÄ·ÃÎÊÂ·¾¶¡¢Á¬½Ó·½·¨ºÍÁ¬½ÓË³Ðò¿ÉÄÜ±»ÓÐÐ§Ê¹ÓÃ£¬Ê¹µÃ²éÑ¯Óï¾äµÄ²ã´Î¾¡¿ÉÄÜµÄ¼õÉÙ¡£
+åˆç§°å­æŸ¥è¯¢ååµŒå¥—ï¼Œåˆç§°ä¸ºå­æŸ¥è¯¢ä¸Šæ‹‰ã€‚æŠŠä¸€äº›å­æŸ¥è¯¢ç½®äºŽå¤–å±‚çš„çˆ¶æŸ¥è¯¢ä¸­ï¼Œä½œä¸ºè¿žæŽ¥å…³ç³»ä¸Žå¤–å±‚çˆ¶æŸ¥è¯¢å¹¶åˆ—ï¼Œå…¶å®žè´¨æ˜¯æŠŠæŸäº›å­æŸ¥è¯¢é‡å†™ä¸ºç­‰ä»·çš„å¤šè¡¨è¿žæŽ¥æ“ä½œï¼ˆå±•å¼€åŽï¼Œå­æŸ¥è¯¢ä¸å­˜åœ¨äº†ï¼Œå¤–éƒ¨æŸ¥è¯¢å˜æˆäº†å¤šè¡¨è¿žæŽ¥ï¼‰ã€‚å¸¦æ¥çš„å¥½å¤„æ˜¯ï¼Œæœ‰å…³çš„è®¿é—®è·¯å¾„ã€è¿žæŽ¥æ–¹æ³•å’Œè¿žæŽ¥é¡ºåºå¯èƒ½è¢«æœ‰æ•ˆä½¿ç”¨ï¼Œä½¿å¾—æŸ¥è¯¢è¯­å¥çš„å±‚æ¬¡å°½å¯èƒ½çš„å‡å°‘ã€‚
 
-³£¼ûµÄIN/ANY/SOME/ALL/EXISTSÒÀ¾ÝÇé¿ö×ª»»Îª°ëÁ¬½Ó£¨SEMI JOIN£©¡¢ÆÕÍ¨ÀàÐÍµÄ×Ó²éÑ¯Ïû³ýµÈÇé¿öÊôÓÚ´ËÀà£¬Èç£º
+å¸¸è§çš„IN/ANY/SOME/ALL/EXISTSä¾æ®æƒ…å†µè½¬æ¢ä¸ºåŠè¿žæŽ¥ï¼ˆSEMI JOINï¼‰ã€æ™®é€šç±»åž‹çš„å­æŸ¥è¯¢æ¶ˆé™¤ç­‰æƒ…å†µå±žäºŽæ­¤ç±»ï¼Œå¦‚ï¼š
 
 SELECT * FROM t1, (SELECT * FROM t2 WHERE t2.a2 >10)v_t2 
 
 WHERE t1.a1<10 AND v_t2.a2<20;
 
-¿ÉÓÅ»¯Îª£º
+å¯ä¼˜åŒ–ä¸ºï¼š
 
 SELECT * FROM t1, t2 WHERE t1.a1<10 AND t2.a2<20AND t2.a2 >10; 
 
-/* ×Ó²éÑ¯±äÎªÁËt1¡¢t2±íµÄÁ¬½Ó²Ù×÷£¬Ïàµ±ÓÚ°Ñt2±í´Ó×Ó²éÑ¯ÖÐÉÏÀ­ÁËÒ»²ã */
+/* å­æŸ¥è¯¢å˜ä¸ºäº†t1ã€t2è¡¨çš„è¿žæŽ¥æ“ä½œï¼Œç›¸å½“äºŽæŠŠt2è¡¨ä»Žå­æŸ¥è¯¢ä¸­ä¸Šæ‹‰äº†ä¸€å±‚ */
 
-×Ó²éÑ¯Õ¹¿ªµÄÌõ¼þ£º
+å­æŸ¥è¯¢å±•å¼€çš„æ¡ä»¶ï¼š
 
-a£©Èç¹û×Ó²éÑ¯ÖÐ³öÏÖÁË¾Û¼¯¡¢GROUPBY¡¢DISTINCT×Ó¾ä£¬Ôò×Ó²éÑ¯Ö»ÄÜµ¥¶ÀÇó½â£¬²»¿ÉÒÔÉÏÀ­µ½Íâ²ã¡£
+aï¼‰å¦‚æžœå­æŸ¥è¯¢ä¸­å‡ºçŽ°äº†èšé›†ã€GROUPBYã€DISTINCTå­å¥ï¼Œåˆ™å­æŸ¥è¯¢åªèƒ½å•ç‹¬æ±‚è§£ï¼Œä¸å¯ä»¥ä¸Šæ‹‰åˆ°å¤–å±‚ã€‚
 
-b£©Èç¹û×Ó²éÑ¯Ö»ÊÇÒ»¸ö¼òµ¥¸ñÊ½µÄ£¨SPJ¸ñÊ½£©²éÑ¯Óï¾ä£¬Ôò¿ÉÒÔÉÏÀ­×Ó²éÑ¯µ½Íâ²ã£¬ÕâÑùÍùÍùÄÜÌá¸ß²éÑ¯Ð§ÂÊ¡£×Ó²éÑ¯ÉÏÀ­£¬ÌÖÂÛµÄ¾ÍÊÇÕâÖÖ¸ñÊ½£¬ÕâÒ²ÊÇ×Ó²éÑ¯Õ¹¿ª¼¼Êõ´¦ÀíµÄ·¶Î§¡£
+bï¼‰å¦‚æžœå­æŸ¥è¯¢åªæ˜¯ä¸€ä¸ªç®€å•æ ¼å¼çš„ï¼ˆSPJæ ¼å¼ï¼‰æŸ¥è¯¢è¯­å¥ï¼Œåˆ™å¯ä»¥ä¸Šæ‹‰å­æŸ¥è¯¢åˆ°å¤–å±‚ï¼Œè¿™æ ·å¾€å¾€èƒ½æé«˜æŸ¥è¯¢æ•ˆçŽ‡ã€‚å­æŸ¥è¯¢ä¸Šæ‹‰ï¼Œè®¨è®ºçš„å°±æ˜¯è¿™ç§æ ¼å¼ï¼Œè¿™ä¹Ÿæ˜¯å­æŸ¥è¯¢å±•å¼€æŠ€æœ¯å¤„ç†çš„èŒƒå›´ã€‚
 
-°Ñ×Ó²éÑ¯ÉÏÀ­µ½ÉÏ²ã²éÑ¯£¬Ç°ÌáÊÇÉÏÀ­£¨Õ¹¿ª£©ºóµÄ½á¹û²»ÄÜ´øÀ´¶àÓàµÄÔª×é£¬ËùÒÔ×Ó²éÑ¯Õ¹¿ªÐèÒª×ñÑ­ÈçÏÂ¹æÔò£º
+æŠŠå­æŸ¥è¯¢ä¸Šæ‹‰åˆ°ä¸Šå±‚æŸ¥è¯¢ï¼Œå‰ææ˜¯ä¸Šæ‹‰ï¼ˆå±•å¼€ï¼‰åŽçš„ç»“æžœä¸èƒ½å¸¦æ¥å¤šä½™çš„å…ƒç»„ï¼Œæ‰€ä»¥å­æŸ¥è¯¢å±•å¼€éœ€è¦éµå¾ªå¦‚ä¸‹è§„åˆ™ï¼š
 
-a£©Èç¹ûÉÏ²ã²éÑ¯µÄ½á¹ûÃ»ÓÐÖØ¸´£¨¼´SELECT×Ó¾äÖÐ°üº¬Ö÷Âë£©£¬Ôò¿ÉÒÔÕ¹¿ªÆä×Ó²éÑ¯¡£²¢ÇÒÕ¹¿ªºóµÄ²éÑ¯µÄSELECT×Ó¾äÇ°Ó¦¼ÓÉÏDISTINCT±êÖ¾¡£
+aï¼‰å¦‚æžœä¸Šå±‚æŸ¥è¯¢çš„ç»“æžœæ²¡æœ‰é‡å¤ï¼ˆå³SELECTå­å¥ä¸­åŒ…å«ä¸»ç ï¼‰ï¼Œåˆ™å¯ä»¥å±•å¼€å…¶å­æŸ¥è¯¢ã€‚å¹¶ä¸”å±•å¼€åŽçš„æŸ¥è¯¢çš„SELECTå­å¥å‰åº”åŠ ä¸ŠDISTINCTæ ‡å¿—ã€‚
 
-b£©Èç¹ûÉÏ²ã²éÑ¯µÄSELECTÓï¾äÖÐÓÐDISTINCT±êÖ¾£¬¿ÉÒÔÖ±½Ó½øÐÐ×Ó²éÑ¯Õ¹¿ª¡£
+bï¼‰å¦‚æžœä¸Šå±‚æŸ¥è¯¢çš„SELECTè¯­å¥ä¸­æœ‰DISTINCTæ ‡å¿—ï¼Œå¯ä»¥ç›´æŽ¥è¿›è¡Œå­æŸ¥è¯¢å±•å¼€ã€‚
 
-Èç¹ûÄÚ²ã²éÑ¯½á¹ûÃ»ÓÐÖØ¸´Ôª×é£¬Ôò¿ÉÒÔÕ¹¿ª¡£
+å¦‚æžœå†…å±‚æŸ¥è¯¢ç»“æžœæ²¡æœ‰é‡å¤å…ƒç»„ï¼Œåˆ™å¯ä»¥å±•å¼€ã€‚
 
-×Ó²éÑ¯Õ¹¿ªµÄ¾ßÌå²½Öè£º
+å­æŸ¥è¯¢å±•å¼€çš„å…·ä½“æ­¥éª¤ï¼š
 
-a£©½«×Ó²éÑ¯ºÍÍâ²ã²éÑ¯µÄFROM×Ó¾äÁ¬½ÓÎªÍ¬Ò»¸öFROM×Ó¾ä£¬²¢ÇÒÐÞ¸ÄÏàÓ¦µÄÔËÐÐ²ÎÊý¡£
+aï¼‰å°†å­æŸ¥è¯¢å’Œå¤–å±‚æŸ¥è¯¢çš„FROMå­å¥è¿žæŽ¥ä¸ºåŒä¸€ä¸ªFROMå­å¥ï¼Œå¹¶ä¸”ä¿®æ”¹ç›¸åº”çš„è¿è¡Œå‚æ•°ã€‚
 
-b£©½«×Ó²éÑ¯µÄÎ½´Ê·ûºÅ½øÐÐÏàÓ¦ÐÞ¸Ä(Èç£º¡°IN¡±ÐÞ¸ÄÎª¡°=¡±)¡£
+bï¼‰å°†å­æŸ¥è¯¢çš„è°“è¯ç¬¦å·è¿›è¡Œç›¸åº”ä¿®æ”¹(å¦‚ï¼šâ€œINâ€ä¿®æ”¹ä¸ºâ€œ=â€)ã€‚
 
-c£©½«×Ó²éÑ¯µÄWHEREÌõ¼þ×÷ÎªÒ»¸öÕûÌåÓëÍâ²ã²éÑ¯µÄWHEREÌõ¼þºÏ²¢£¬²¢ÓÃANDÌõ¼þÁ¬½Ó´ÊÁ¬½Ó£¬´Ó¶ø±£Ö¤ÐÂÉú³ÉµÄÎ½´ÊÓëÔ­¾ÉÎ½´ÊµÄÉÏÏÂÎÄÒâË¼ÏàÍ¬£¬ÇÒ³ÉÎªÒ»¸öÕûÌå¡£
+cï¼‰å°†å­æŸ¥è¯¢çš„WHEREæ¡ä»¶ä½œä¸ºä¸€ä¸ªæ•´ä½“ä¸Žå¤–å±‚æŸ¥è¯¢çš„WHEREæ¡ä»¶åˆå¹¶ï¼Œå¹¶ç”¨ANDæ¡ä»¶è¿žæŽ¥è¯è¿žæŽ¥ï¼Œä»Žè€Œä¿è¯æ–°ç”Ÿæˆçš„è°“è¯ä¸ŽåŽŸæ—§è°“è¯çš„ä¸Šä¸‹æ–‡æ„æ€ç›¸åŒï¼Œä¸”æˆä¸ºä¸€ä¸ªæ•´ä½“ã€‚
 
-c£©¾Û¼¯×Ó²éÑ¯Ïû³ý£¨Aggregate Subquery Elimination£©
+cï¼‰èšé›†å­æŸ¥è¯¢æ¶ˆé™¤ï¼ˆAggregate Subquery Eliminationï¼‰
 
-Í¨³££¬Ò»Ð©ÏµÍ³Ö§³ÖµÄÊÇ±êÁ¿¾Û¼¯×Ó²éÑ¯Ïû³ý¡£Èç£º
+é€šå¸¸ï¼Œä¸€äº›ç³»ç»Ÿæ”¯æŒçš„æ˜¯æ ‡é‡èšé›†å­æŸ¥è¯¢æ¶ˆé™¤ã€‚å¦‚ï¼š
 
 SELECT * FROM t1 WHERE t1.a1>(SELECT avg(t2.a2) FROM t2);
 
 
 
-¹Ø¼ü×Ö
+å…³é”®å­—
 DISTINCT 
 
 
 ### join
-INNER JOIN£ºÈç¹û±íÖÐÓÐÖÁÉÙÒ»¸öÆ¥Åä£¬Ôò·µ»ØÐÐ
-LEFT JOIN£º¼´Ê¹ÓÒ±íÖÐÃ»ÓÐÆ¥Åä£¬Ò²´Ó×ó±í·µ»ØËùÓÐµÄÐÐ
-RIGHT JOIN£º¼´Ê¹×ó±íÖÐÃ»ÓÐÆ¥Åä£¬Ò²´ÓÓÒ±í·µ»ØËùÓÐµÄÐÐ
-FULL JOIN£ºÖ»ÒªÆäÖÐÒ»¸ö±íÖÐ´æÔÚÆ¥Åä£¬Ôò·µ»ØÐÐ
+INNER JOINï¼šå¦‚æžœè¡¨ä¸­æœ‰è‡³å°‘ä¸€ä¸ªåŒ¹é…ï¼Œåˆ™è¿”å›žè¡Œ
+LEFT JOINï¼šå³ä½¿å³è¡¨ä¸­æ²¡æœ‰åŒ¹é…ï¼Œä¹Ÿä»Žå·¦è¡¨è¿”å›žæ‰€æœ‰çš„è¡Œ
+RIGHT JOINï¼šå³ä½¿å·¦è¡¨ä¸­æ²¡æœ‰åŒ¹é…ï¼Œä¹Ÿä»Žå³è¡¨è¿”å›žæ‰€æœ‰çš„è¡Œ
+FULL JOINï¼šåªè¦å…¶ä¸­ä¸€ä¸ªè¡¨ä¸­å­˜åœ¨åŒ¹é…ï¼Œåˆ™è¿”å›žè¡Œ
 
-joinÓÅ»¯
+joinä¼˜åŒ–
 
