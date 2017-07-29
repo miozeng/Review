@@ -10,6 +10,7 @@
 ### 三、MySQL自身因素
 当解决了上述服务器硬件制约因素后，让我们看看MySQL自身的优化是如何操作的。对 MySQL自身的优化主要是对其配置文件my.cnf中的各项参数进行优化调整。下面我们介绍一些对性能影响较大的参数。     
 下面，我们根据以上硬件配置结合一份已经优化好的my.cnf进行说明：
+```  
   
 
 　　#vim /etc/my.cnf
@@ -74,10 +75,10 @@
 　　#默认为60
 　　query_cache_size=32M
 
-  
+```    
   
 ### 注意：
-一、如果Key_reads太大，则应该把my.cnf中Key_buffer_size变大，保持Key_reads/Key_read_requests至少1/100以上，越小越好。
+一、如果Key_reads太大，则应该把my.cnf中Key_buffer_size变大，保持Key_reads/Key_read_requests至少1/100以上，越小越好。       
 二、如果Qcache_lowmem_prunes很大，就要增加Query_cache_size的值。
 很多时候我们发现，通过参数设置进行性能优化所带来的性能提升，可能并不如许多人想象的那样产生质的飞跃，除非是之前的设置存在严重不合理的情况。我们 不能将性能调优完全依托于通过DBA在数据库上线后进行的参数调整，而应该在系统设计和开发阶段就尽可能减少性能问题。
 
