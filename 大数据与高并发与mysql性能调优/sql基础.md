@@ -64,15 +64,15 @@ _通配符：
 函数一般是在数据上执行的，它给数据的转换和处理提供了方便。大多数SQL实现支持用于处理文本串的函数、用于在数值数据上进行算术运算操作的函数、用于处理日期和时间并提取特定成分的日期和时间函数、返回DBMS正使用的特殊信息的函数
 1、常见的文本处理函数：
 (1)、Upper(str)：将文本str转换为大写。    
-例：SELECT Upper(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;
+例：SELECT Upper(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;   
 (2)、Left(str, len)：返回串str左边的len个字符。      
-例：SELECT Left(vend_name, 3) AS vend_name_upcase FROM vendors ORDER BY vend_name;
+例：SELECT Left(vend_name, 3) AS vend_name_upcase FROM vendors ORDER BY vend_name;    
 (3)、Length(str)：返回串str的长度。     
-例：SELECT Length(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;
-(4)、Locate(substr, str)：返回串str的一个substr子串的第一个字符出现的位置,如果substr不再str中则返回0。该函数的另一个版本是   Locate(substr,str,pos),表示从pos位置开始在str中寻找substr。
-例：SELECT Locate('ACM', vend_name) FROM vendors ORDER BY vend_name;  
+例：SELECT Length(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;    
+(4)、Locate(substr, str)：返回串str的一个substr子串的第一个字符出现的位置,如果substr不再str中则返回0。该函数的另一个版本是   Locate(substr,str,pos),表示从pos位置开始在str中寻找substr。  
+例：SELECT Locate('ACM', vend_name) FROM vendors ORDER BY vend_name;    
 
-注意：
+注意：     
 1、ORDER BY子句必须位于FROM子句之后。   
 2、当ORDER BY 子句和LIMIT子句同时使用时LIMIT子句必须位于ORDER BY子句之后     
 3、同时使用WHERE子句和ORDER BY子句时应将ORDER BY子句置于WHERE子句之后。      
@@ -95,17 +95,18 @@ MIN(column)：返回某列的最小值。
 MAX(column)：返回某列的最大值。  
 SUM(column)：返回某列的和。  
 DISTINCT：只包含不同值  
-分组：
+分组：   
 分组允许把数据分为多个逻辑组，以便能对每个组进行聚集计算。  
 
-创建分组：GROUP BY子句，GROUP BY子句必须出现在WHERE子句之后，ORDER BY子句之前。   
+创建分组：     
+GROUP BY子句，GROUP BY子句必须出现在WHERE子句之后，ORDER BY子句之前。   
 WITH ROLLUP：可以得到每个分组汇总级别的值（和ORDER BY子句互斥）。   
 HAVING：HAVING过滤分组，WHERE过滤列，HAVING位于GROUP BY子句之前，HAVING位于GROUP BY子句之后。（WHERE在分组前进行过滤，HAVING在分组后进行过滤）
 
-GROUP BY和ORDER BY子句的区别：
-1、OEDER BY是排序后的输出而GROUP BY是分组的顺序（不一定是期望输出的顺序）    
-2、ORDER BY任意列都可以使用，而GROUP BY只可能使用选择列或表达式列，而且必须使用每个选择列表达式。  
-3、ORDER BY不是必须出现在SQL语句中，但是如果与聚集函数一起使用列（或表达式）GROUP BY子句必须存在于SQL语句中。   
+GROUP BY和ORDER BY子句的区别：    
+1、OEDER BY是排序后的输出而GROUP BY是分组的顺序（不一定是期望输出的顺序）     
+2、ORDER BY任意列都可以使用，而GROUP BY只可能使用选择列或表达式列，而且必须使用每个选择列表达式。   
+3、ORDER BY不是必须出现在SQL语句中，但是如果与聚集函数一起使用列（或表达式）GROUP BY子句必须存在于SQL语句中。    
 
 
 ### 子查询  
@@ -191,12 +192,7 @@ c）聚集子查询消除（Aggregate Subquery Elimination）
 
 通常，一些系统支持的是标量聚集子查询消除。如：
 
-SELECT * FROM t1 WHERE t1.a1>(SELECT avg(t2.a2) FROM t2);
-
-
-
-关键字
-DISTINCT 
+SELECT * FROM t1 WHERE t1.a1>(SELECT avg(t2.a2) FROM t2); 
 
 
 ### join
