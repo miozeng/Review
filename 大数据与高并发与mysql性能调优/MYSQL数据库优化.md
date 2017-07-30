@@ -24,7 +24,7 @@
 　　skip-name-resolve
 　　#禁止MySQL对外部连接进行DNS解析，使用这一选项可以消除MySQL进行DNS解析的时间。但需要注意，如果开启该选项，则所有远程主机连接授权都要使用IP地址方式，否则MySQL将无法正常处理连接请求！
 　　back_log = 384
-　 　#back_log参数的值指出在MySQL暂时停止响应新请求之前的短时间内多少个请求可以被存在堆栈中。 如果系统在一个短时间内有很多连接，则需要增大该参数的值，该参数值指定到来的TCP/IP连接的侦听队列的大小。不同的操作系统在这个队列大小上有它自 己的限制。 试图设定back_log高于你的操作系统的限制将是无效的。默认值为50。对于Linux系统推荐设置为小于512的整数。
+　 #back_log参数的值指出在MySQL暂时停止响应新请求之前的短时间内多少个请求可以被存在堆栈中。 如果系统在一个短时间内有很多连接，则需要增大该参数的值，该参数值指定到来的TCP/IP连接的侦听队列的大小。不同的操作系统在这个队列大小上有它自 己的限制。 试图设定back_log高于你的操作系统的限制将是无效的。默认值为50。对于Linux系统推荐设置为小于512的整数。
 　　key_buffer_size = 384M
 　　#key_buffer_size指定用于索引的缓冲区大小，增加它可得到更好的索引处理性能。对于内存在4GB左右的服务器该参数可设置为256M或384M。注意：该参数值设置的过大反而会是服务器整体效率降低！
 　　max_allowed_packet = 4M
@@ -38,6 +38,7 @@
 　　#联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享。
 　　myisam_sort_buffer_size = 64M
 　　table_cache = 512
+  # table_cache 参数设置表高速缓存的数目。每个连接进来，都会至少打开一个表缓存。#因此， table_cache 的大小应与 max_connections 的设置有关。例如，对于 200 个#并行运行的连接，应该让表的缓存至少有 200 × N ，这里 N 是应用可以执行的查询#的一个联接中表的最大数量。此外，还需要为临时表和文件保留一些额外的文件描述符。
 　　thread_cache_size = 64
 　　query_cache_size = 64M
 　 　#指定MySQL查询缓冲区的大小。可以通过在MySQL控制台观察，如果Qcache_lowmem_prunes的值非常大，则表明经常出现缓冲不 够 的情况；如果Qcache_hits的值非常大，则表明查询缓冲使用非常频繁，如果该值较小反而会影响效率，那么可以考虑不用查询缓 冲；Qcache_free_blocks，如果该值非常大，则表明缓冲区中碎片很多。
@@ -45,6 +46,7 @@
 　　max_connections = 768
 　　#指定MySQL允许的最大连接进程数。如果在访问论坛时经常出现Too Many Connections的错误提 示，则需要增大该参数值。
 　　max_connect_errors = 1000
+  #设置每个主机的连接请求异常中断的最大次数，当超过该次数，MYSQL服务器将禁止host的连接请求，直到mysql服务器重启或通过flush hosts命令清空此host的相关信息。
 　　wait_timeout = 10
 　　#指定一个请求的最大连接时间，对于4GB左右内存的服务器可以设置为5-10。
 　　thread_concurrency = 8
@@ -53,16 +55,48 @@
 　　#开启该选项可以彻底关闭MySQL的TCP/IP连接方式，如果WEB服务器是以远程连接的方式访问MySQL数据库服务器则不要开启该选项！否则将无法正常连接！
 　　table_cache=1024
 　　#物理内存越大，设置就越大。默认为2402,调到512-1024最佳
-　　innodb_additional_mem_pool_size=4M
-　　#默认为2M
-　　innodb_flush_log_at_trx_commit=1
-　　#设置为0就是等到innodb_log_buffer_size列队满后再统一储存，默认为1
-　　innodb_log_buffer_size=2M
-　　#默认为1M
-　　innodb_thread_concurrency=8
-　　#你的服务器CPU有几个就设置为几，建议用默认一般为8
+
+     innodb_additional_mem_pool_size = 16M   
+    #这个参数用来设置 InnoDB 存储的数据目录信息和其它内部数据结构的内存池大小，类似于Oracle的library cache。这不是一个强制参数，可以被突破。
+
+    innodb_buffer_pool_size = 2048M   
+    # 这对Innodb表来说非常重要。Innodb相比MyISAM表对缓冲更为敏感。MyISAM可以在默认的 key_buffer_size 设置下运行的可以，然而Innodb在默认的 innodb_buffer_pool_size 设置下却跟蜗牛似的。由于Innodb把数据和索引都缓存起来，无需留给操作系统太多的内存，因此如果只需要用Innodb的话则可以设置它高达 70-80% 的可用内存。一些应用于 key_buffer 的规则有 — 如果你的数据量不大，并且不会暴增，那么无需把 innodb_buffer_pool_size 设置的太大了
+
+    innodb_data_file_path = ibdata1:1024M:autoextend   
+    #表空间文件 重要数据
+
+    innodb_file_io_threads = 4   
+    #文件IO的线程数，一般为 4，但是在 Windows 下，可以设置得较大。
+
+    innodb_thread_concurrency = 8   
+    #服务器有几个CPU就设置为几，建议用默认设置，一般为8.
+
+    innodb_flush_log_at_trx_commit = 2   
+    # 如果将此参数设置为1，将在每次提交事务后将日志写入磁盘。为提供性能，可以设置为0或2，但要承担在发生故障时丢失数据的风险。设置为0表示事务日志写入日志文件，而日志文件每秒刷新到磁盘一次。设置为2表示事务日志将在提交时写入日志，但日志文件每次刷新到磁盘一次。
+
+    innodb_log_buffer_size = 16M  
+    #此参数确定些日志文件所用的内存大小，以M为单位。缓冲区更大能提高性能，但意外的故障将会丢失数据.MySQL开发人员建议设置为1－8M之间
+
+    innodb_log_file_size = 128M   
+    #此参数确定数据日志文件的大小，以M为单位，更大的设置可以提高性能，但也会增加恢复故障数据库所需的时间
+
+    innodb_log_files_in_group = 3   
+    #为提高性能，MySQL可以以循环方式将日志文件写到多个文件。推荐设置为3M
+
+    innodb_max_dirty_pages_pct = 90   
+    #推荐阅读 http://www.taobaodba.com/html/221_innodb_max_dirty_pages_pct_checkpoint.html
+    # Buffer_Pool中Dirty_Page所占的数量，直接影响InnoDB的关闭时间。参数innodb_max_dirty_pages_pct 可以直接控制了Dirty_Page在Buffer_Pool中所占的比率，而且幸运的是innodb_max_dirty_pages_pct是可以动态改变的。所以，在关闭InnoDB之前先将innodb_max_dirty_pages_pct调小，强制数据块Flush一段时间，则能够大大缩短 MySQL关闭的时间。
+
+    innodb_lock_wait_timeout = 120   
+    # InnoDB 有其内置的死锁检测机制，能导致未完成的事务回滚。但是，如果结合InnoDB使用MyISAM的lock tables 语句或第三方事务引擎,则InnoDB无法识别死锁。为消除这种可能性，可以将innodb_lock_wait_timeout设置为一个整数值，指示 MySQL在允许其他事务修改那些最终受事务回滚的数据之前要等待多长时间(秒数)
+
+    innodb_file_per_table = 0   
+    #独享表空间（关闭）
+
+
 　　key_buffer_size=256M
 　　#默认为218，调到128最佳
+   #批定用于索引的缓冲区大小，增加它可以得到更好的索引处理性能，对于内存在4GB左右的服务器来说，该参数可设置为256MB或384MB。
 　　tmp_table_size=64M
 　　#默认为16M，调到64-256最挂
 　　read_buffer_size=4M
@@ -74,7 +108,9 @@
 　　thread_cache_size=120
 　　#默认为60
 　　query_cache_size=32M
-
+    query_cache_limit = 4M    
+    #指定单个查询能够使用的缓冲区大小，缺省为1M
+    
 ```    
   
 ### 注意：
