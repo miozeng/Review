@@ -21,9 +21,13 @@ UPDATE table_name SET column1=value1,column2=value2,...WHERE some_column=some_va
 SELECT column_name,column_name FROM table_name;   
 
 
-#### 操作符
+### 操作符
+操作符包括
+l 算术运算符    
+l 比较运算符  
+l 逻辑运算符    
+l 位运算符  
 用来联结或改变WHERE子句中的子句的关键字。
-
 AND    
 用来指示检索满足 所有 给定条件的行。   
 OR      
@@ -47,30 +51,80 @@ _通配符：
 2、在确实需要使用通配符时除非绝对有必要，否则不要把它们用在搜索模式的最开始处，因为这样是最慢的。      
 3、仔细注意通配符的位置。如果放错地方，可能不会返回想要的数据。       
 
+### 函数
+l 字符串类 
+CHARSET(str) //返回字串字符集
+CONCAT (string2  [,... ]) //连接字串
+INSTR (string ,substring )//返回substring首次在string中出现的位置,不存在返回0
+LCASE (string2 ) //转换成小写
+LEFT (string2 ,length ) //从string2中的左边起取length个字符
+LENGTH (string ) //string长度   
+LOAD_FILE (file_name ) //从文件读取内容   
+LOCATE (substring , string  [,start_position ] ) 同INSTR,但可指定开始位置  
+LPAD (string2 ,length ,pad ) //重复用pad加在string开头,直到字串长度为length  
+LTRIM (string2 ) //去除前端空格    
+REPEAT (string2 ,count ) //重复count次   
+REPLACE (str ,search_str ,replace_str ) //在str中用replace_str替换search_str   
+RPAD (string2 ,length ,pad) //在str后 用pad补充,直到长度为length   
+RTRIM (string2 ) //去除后端空格    
+STRCMP (string1 ,string2 ) //逐字符比较两字串大小,   
+SUBSTRING (str , position  [,length ]) //从str的position开始,取length个字符,    
+注：mysql中处理字符串时，默认第一个字符下标为1，即参数position必须大于等于1    
 
-#### 计算字段
-1、Concat拼接字段：
-把多个串链接起来形成一个较长的串，需要一个或多个指定的串，各个串之间用逗号隔开。   
-例如：SELECT Concat(vend_name,'(',vend_country,')') FROM vendors ORDER BY vend_name;
-2、去掉返回的值中的空格：  
-(1)、RTrim()去掉右侧多余的空格来整理数据。  
-(2)、LTrim()去掉左侧多余的空格来整理数据。  
-(3)、Trim()去掉左右两边多余的空格来整理数据。   
-3、执行算数运算(MySQL支持 加减乘除运算和圆括号改变运算优先级)：  
-计算字段另一个用途就是对检索出的数据进行算术计算。      
-例如：SELECT prod_id, quantity, item_price, quantity * item_price AS expanded_price FROM orderitems WHERE order_num = 20005;
 
-#### 事件处理函数
-函数一般是在数据上执行的，它给数据的转换和处理提供了方便。大多数SQL实现支持用于处理文本串的函数、用于在数值数据上进行算术运算操作的函数、用于处理日期和时间并提取特定成分的日期和时间函数、返回DBMS正使用的特殊信息的函数
-1、常见的文本处理函数：
-(1)、Upper(str)：将文本str转换为大写。    
-例：SELECT Upper(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;   
-(2)、Left(str, len)：返回串str左边的len个字符。      
-例：SELECT Left(vend_name, 3) AS vend_name_upcase FROM vendors ORDER BY vend_name;    
-(3)、Length(str)：返回串str的长度。     
-例：SELECT Length(vend_name) AS vend_name_upcase FROM vendors ORDER BY vend_name;    
-(4)、Locate(substr, str)：返回串str的一个substr子串的第一个字符出现的位置,如果substr不再str中则返回0。该函数的另一个版本是   Locate(substr,str,pos),表示从pos位置开始在str中寻找substr。  
-例：SELECT Locate('ACM', vend_name) FROM vendors ORDER BY vend_name;    
+l 数学类
+ABS (number2 ) //绝对值    
+BIN (decimal_number ) //十进制转二进制    
+CEILING (number2 ) //向上取整    
+CONV(number2,from_base,to_base) //进制转换   
+FLOOR (number2 ) //向下取整   
+FORMAT (number,decimal_places ) //保留小数位数   
+HEX (DecimalNumber ) //转十六进制   
+注：HEX()中可传入字符串，则返回其ASC-11码，如HEX(’DEF’)返回4142143  
+也可以传入十进制整数，返回其十六进制编码，如HEX(25)返回19
+LEAST (number , number2  [,..]) //求最小值  
+MOD (numerator ,denominator ) //求余    
+POWER (number ,power ) //求指数  
+RAND([seed]) //随机数    
+ROUND (number  [,decimals ]) //四舍五入,decimals为小数位数]
+注：返回类型并非均为整数，如：    
+SIGN (number2 ) //返回符号,正负或0
+SQRT(number2) //开平方
+
+ 
+l 日期时间类
+ADDTIME (date2 ,time_interval ) //将time_interval加到date2
+CONVERT_TZ (datetime2 ,fromTZ ,toTZ ) //转换时区
+CURRENT_DATE (  ) //当前日期
+CURRENT_TIME (  ) //当前时间
+CURRENT_TIMESTAMP (  ) //当前时间戳
+DATE (datetime ) //返回datetime的日期部分
+DATE_ADD (date2 , INTERVAL d_value d_type ) //在date2中加上日期或时间
+DATE_FORMAT (datetime ,FormatCodes ) //使用formatcodes格式显示datetime
+DATE_SUB (date2 , INTERVAL d_value d_type ) //在date2上减去一个时间
+DATEDIFF (date1 ,date2 ) //两个日期差
+DAY (date ) //返回日期的天
+DAYNAME (date ) //英文星期
+DAYOFWEEK (date ) //星期(1-7) ,1为星期天
+DAYOFYEAR (date ) //一年中的第几天
+EXTRACT (interval_name  FROM date ) //从date中提取日期的指定部分
+MAKEDATE (year ,day ) //给出年及年中的第几天,生成日期串
+MAKETIME (hour ,minute ,second ) //生成时间串
+MONTHNAME (date ) //英文月份名
+NOW (  ) //当前时间
+SEC_TO_TIME (seconds ) //秒数转成时间
+STR_TO_DATE (string ,format ) //字串转成时间,以format格式显示
+TIMEDIFF (datetime1 ,datetime2 ) //两个时间差
+TIME_TO_SEC (time ) //时间转秒数]
+WEEK (date_time [,start_of_week ]) //第几周
+YEAR (datetime ) //年份
+DAYOFMONTH(datetime) //月的第几天
+HOUR(datetime) //小时
+LAST_DAY(date) //date的月的最后日期
+MICROSECOND(datetime) //微秒
+MONTH(datetime) //月
+MINUTE(datetime) //分
+
 
 注意：     
 1、ORDER BY子句必须位于FROM子句之后。   
@@ -107,6 +161,25 @@ GROUP BY和ORDER BY子句的区别：
 1、OEDER BY是排序后的输出而GROUP BY是分组的顺序（不一定是期望输出的顺序）     
 2、ORDER BY任意列都可以使用，而GROUP BY只可能使用选择列或表达式列，而且必须使用每个选择列表达式。   
 3、ORDER BY不是必须出现在SQL语句中，但是如果与聚集函数一起使用列（或表达式）GROUP BY子句必须存在于SQL语句中。    
+
+### join
+INNER JOIN：(INNER JOIN 与 JOIN 是相同的。)如果表中有至少一个匹配，则返回行     
+SELECT column_name(s) FROM table_name1 INNER JOIN table_name2 
+ON table_name1.column_name=table_name2.column_name
+
+LEFT JOIN：即使右表中没有匹配，也从左表返回所有的行 
+SELECT column_name(s) FROM table_name1 LEFT JOIN table_name2 
+ON table_name1.column_name=table_name2.column_name
+
+RIGHT JOIN：即使左表中没有匹配，也从右表返回所有的行  
+SELECT column_name(s) FROM table_name1 RIGHT JOIN table_name2 
+ON table_name1.column_name=table_name2.column_name
+
+FULL JOIN：只要其中一个表中存在匹配，则返回行    
+SELECT column_name(s) FROM table_name1 FULL JOIN table_name2 
+ON table_name1.column_name=table_name2.column_name
+
+![image](https://github.com/miozeng/Review/blob/master/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8Emysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/join.jpg)
 
 
 ### 子查询  
@@ -195,11 +268,7 @@ c）聚集子查询消除（Aggregate Subquery Elimination）
 SELECT * FROM t1 WHERE t1.a1>(SELECT avg(t2.a2) FROM t2); 
 
 
-### join
-INNER JOIN：如果表中有至少一个匹配，则返回行
-LEFT JOIN：即使右表中没有匹配，也从左表返回所有的行
-RIGHT JOIN：即使左表中没有匹配，也从右表返回所有的行
-FULL JOIN：只要其中一个表中存在匹配，则返回行
+  
 
-join优化
+
 
