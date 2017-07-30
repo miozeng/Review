@@ -167,7 +167,7 @@ INNER JOIN：(INNER JOIN 与 JOIN 是相同的。)如果表中有至少一个匹
 SELECT column_name(s) FROM table_name1 INNER JOIN table_name2 
 ON table_name1.column_name=table_name2.column_name
 
-LEFT JOIN：即使右表中没有匹配，也从左表返回所有的行 
+LEFT JOIN：即使右表中没有匹配，也从左表返回所有的行      
 SELECT column_name(s) FROM table_name1 LEFT JOIN table_name2 
 ON table_name1.column_name=table_name2.column_name
 
