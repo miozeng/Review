@@ -233,3 +233,5 @@ SIMPLE
 http://www.cnblogs.com/jevo/p/3314361.html
 
 http://www.cnblogs.com/zengkefu/p/6519010.html
+
+http://lib.csdn.net/article/mysql/32711
