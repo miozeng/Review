@@ -98,3 +98,138 @@ relay_log_space_limit=      #设定用于存储所有中继日志文件的可用
 max_relay_log_size={4096..1073741824}    #设定从服务器上中继日志的体积上限，到达此限度时其会自动进行中继日志滚动。此参数值为0时，mysqld将使用max_binlog_size参数同时为二进制日志和中继日志设定日志文件体积上限。作用范围为全局级别，可用于配置文件，属动态变量。
  
 
+# 性能分析与explain
+1 .使用explain
+
+语句去查看分析结果，如
+
+explain select * from test1 where id=1;
+会出现:
+
+id selecttype table type possible_keys key key_len ref rows extra
+各列其中，
+
+type=const表示通过索引一次就找到了，
+key=primary的话，表示使用了主键
+type=all,表示为全表扫描，
+key=null表示没用到索引；
+type=ref,因为这时认为是多个匹配行，在联合查询中，一般为REF
+
+2. MYSQL中的组合索引
+
+假设表有id,key1,key2,key3,把三者形成一个组合索引，则如：
+
+where key1=....
+where key1=1 and key2=2
+where key1=3 and key3=3 and key2=2
+根据最左原则，这些都是可以使用索引的哦
+如  from test where key1=1 order by key3用explain分析的话，只用到了normal_key索引，但只对where子句起作用，而后面的order by需要排序
+
+3.使用慢查询分析：
+
+在my.ini中：
+long_query_time=1 
+ log-slow-queries=d:\mysql5\logs\mysqlslow.log
+把超过1秒的记录在慢查询日志中
+可以用mysqlsla来分析之。也可以在mysqlreport中，有如DMS 分别分析了select ,update,insert,delete,replace等所占的百份比
+
+4. MYISAM和INNODB的锁定
+
+myisam中，注意是表锁来的，比如在多个UPDATE操作后，再SELECT时，会发现SELECT操作被锁定了，必须等所有UPDATE操作完毕后，再能SELECT
+
+innodb的话则不同了，用的是行锁，不存在上面问题。
+
+5. MYSQL的事务配置项
+
+innodb_flush_log_at_trx_commit=1表示事务提交时立即把事务日志写入磁盘，同时数据和索引也更新innodb_flush_log_at_trx_commit=0事务提交时，不立即把事务日志写入磁盘，每隔1秒写一次innodb_flush_log_at_trx_commit=2事务提交时，立即写入磁盘文件（这里只是写入到内核缓冲区，但不立即刷新到磁盘，而是每隔1秒刷新到盘，同时更新数据和索引
+
+explain用法
+
+EXPLAIN tbl_name
+或：
+EXPLAIN [EXTENDED] SELECT select_options
+前者可以得出一个表的字段结构等等，后者主要是给出相关的一些索引信息，而今天要讲述的重点是后者。
+举例
+mysql> explain select * from event;
++—-+————-+——-+——+—————+——+———+——+——+——-+
+| id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
++—-+————-+——-+——+—————+——+———+——+——+——-+
+| 1 | SIMPLE | event | ALL | NULL | NULL | NULL | NULL | 13 | |
++—-+————-+——-+——+—————+——+———+——+——+——-+
+1 row in set (0.00 sec)
+各个属性的含义
+
+id
+
+select查询的序列号
+
+select_type
+
+select查询的类型，主要是区别普通查询和联合查询、子查询之类的复杂查询。
+
+table
+
+输出的行所引用的表。
+
+type
+
+联合查询所使用的类型。
+type显示的是访问类型，是较为重要的一个指标，结果值从好到坏依次是：
+system > const > eq_ref > ref > fulltext > ref_or_null > index_merge > 
+unique_subquery > index_subquery > range > index > ALL
+一般来说，得保证查询至少达到range级别，最好能达到ref。
+
+possible_keys
+
+指出MySQL能使用哪个索引在该表中找到行。如果是空的，没有相关的索引。这时要提高性能，可通过检验WHERE子句，看是否引用某些字段，或者检查字段不是适合索引。
+
+key
+
+显示MySQL实际决定使用的键。如果没有索引被选择，键是NULL。
+
+key_len
+
+显示MySQL决定使用的键长度。如果键是NULL，长度就是NULL。文档提示特别注意这个值可以得出一个多重主键里mysql实际使用了哪一部分。
+
+ref
+
+显示哪个字段或常数与key一起被使用。
+
+rows
+
+这个数表示mysql要遍历多少数据才能找到，在innodb上是不准确的。
+
+Extra
+
+如果是Only index，这意味着信息只用索引树中的信息检索出的，这比扫描整个表要快。
+如果是where used，就是使用上了where限制。
+如果是impossible where 表示用不着where，一般就是没查出来啥。
+如果此信息显示Using filesort或者Using temporary的话会很吃力，WHERE和ORDER BY的索引经常无法兼顾，如果按照WHERE来确定索引，那么在ORDER BY时，就必然会引起Using filesort，这就要看是先过滤再排序划算，还是先排序再过滤划算。
+常见的一些名词解释
+
+Using filesortMySQL
+
+需要额外的一次传递，以找出如何按排序顺序检索行。
+
+Using index
+
+从只使用索引树中的信息而不需要进一步搜索读取实际的行来检索表中的列信息。
+
+Using temporary
+
+为了解决查询，MySQL需要创建一个临时表来容纳结果。
+
+ref
+
+对于每个来自于前面的表的行组合，所有有匹配索引值的行将从这张表中读取ALL完全没有索引的情况，性能非常地差劲。
+
+index
+
+与ALL相同，除了只有索引树被扫描。这通常比ALL快，因为索引文件通常比数据文件小。
+
+SIMPLE
+
+简单SELECT(不使用UNION或子查询)
+http://www.cnblogs.com/jevo/p/3314361.html
+
+http://www.cnblogs.com/zengkefu/p/6519010.html
