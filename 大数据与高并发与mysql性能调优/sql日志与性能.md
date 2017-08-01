@@ -355,7 +355,8 @@ Extra 列提供了有关不同种类的MySQL 优化器路径的一系列额外�
 
 2. Using temporary
 这个值表示使用了内部临时(基于内存的)表。一个查询可能用到多个临时表。有很多原因都会导致MySQL 在执行查询期间创建临时表。两个常见的原因是在来自不同表的列上使用了DISTINCT，或者使用了不同的ORDER BY 和GROUP BY 列。of_query_execution_and_use_of_temp_tables。可以强制指定一个临时表使用基于磁盘MyISAM 存储引擎。这样做的原因主要有两个：
-内部临时表占用的空间超过min(tmp_table_size，max_ heap_table_size)系统变量的限制,使用了TEXT/BLOB 列
+内部临时表占用的空间超过min(tmp_table_size，max_ heap_table_size)系统变量的限制   
+使用了TEXT/BLOB 列    
 
 3. Using filesort       
 这是ORDER BY 语句的结果。这可能是一个CPU 密集型的过程。可以通过选择合适的索引来改进性能，用索引来为查询结果排序。    
