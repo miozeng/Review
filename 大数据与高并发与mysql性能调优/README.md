@@ -12,27 +12,8 @@
 
 通过[事物与锁](事物与锁.md) 可以了解mysql的事物与锁的基础知识,包括事务的特性，隔离级别，并发问题，mysql事务的实现方式，锁的概念，表级锁，行级锁，页面锁的实现方式，优化方案等，死锁的产生的原因，避免死锁的方法等等。
 
-通过[sql日志与性能](sql日志与性能.md) 可以了解
+通过[sql日志与性能](sql日志与性能.md) 可以了解日志文件包括错误日志，查询日志，二进制日志，事务日志，中继日志等，可以了解sql的性能分析，mysql的参数，检查mysql 相关状态，explain用法等。
 通过[高并发大数据实践](高并发大数据实践.md) 可以了解
-日志
- 慢查询日志
- 全局查询日志
-
-SQL性能下降原因
-性能分析
-  how Profile进行sql分析
-  
-explain
-  explain之select_type和table介绍 6:55  
-  explain之type介绍 19:50  
-  explain之possible_keys和key介绍 10:14  
-  explain之key_len介绍 4:42  
-  explain之key_len介绍 6:40  
-  explain之rows介绍 5:54  
-  explain之Extra介绍
-  
-
-
 
 高并发
    高并发下select的编写规范 [暂未上传]
