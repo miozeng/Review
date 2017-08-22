@@ -7,9 +7,8 @@
 
 
 ### NIO服务端序列图
-![image](https://github.com/miozeng/Review/blob/master/%E5%9F%BA%E7%A1%80/NIOserver.png)
 
-
+![image](https://github.com/miozeng/Review/blob/master/MQ%E4%B8%8E%E5%90%84%E7%A7%8D%E5%8D%8F%E8%AE%AE/NIOserver.png)
 步骤一：打开ServerSocketChannel，用于监听客户端的连接，它是所有客户端连接的父管道，代码示例如下：
 ``` java
 	ServerSocketChannel acceptorSvr = ServerSocketChannel.open();
@@ -87,8 +86,7 @@
 
 ### NIO客户端序列图
 
-![image](https://github.com/miozeng/Review/blob/master/%E5%9F%BA%E7%A1%80/NIOClient.png)
-
+![image](https://github.com/miozeng/Review/blob/master/MQ%E4%B8%8E%E5%90%84%E7%A7%8D%E5%8D%8F%E8%AE%AE/NIOClient.png)
 步骤一：打开SocketChannel，绑定客户端本地地址（可选，默认系统会随机分配一个可用的本地地址），示例代码如下：
 ``` java
 1	SocketChannel clientChannel = SocketChannel.open();
