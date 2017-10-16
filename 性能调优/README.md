@@ -70,25 +70,31 @@ Jvm分析工具，包括自带的jconsole，jps(进程信息), jstack（查看�
 
 ### 数据库
 #### 测试方法：
-Smart-slap :	                 			
-特点：全量发压力，可得到最大QPS，对比不同集群的最大QPS。分析不同集群的最大QPS.	   							
-Jmeter:	    		
-特点：控制实时压力，分析各集群在指定压力下的性能情况	    		
+Smart-slap :              	                 			
+特点：全量发压力，可得到最大QPS，对比不同集群的最大QPS。分析不同集群的最大QPS.	           							
+Jmeter:	                  		
+特点：控制实时压力，分析各集群在指定压力下的性能情况                  	    		
 
-测试以下数据：	 
+测试以下数据：
 
-系统负载：	    
+系统负载：                 	    
+ 
+CPU:CUP_IDLE 、CPU_WA、SERVER_LOADAVG  
 
-CPU:CUP_IDLE 、CPU_WA、SERVER_LOADAVG	               		
-内存：MEM_URATE、MEM_USED		                     	
-网卡：NIC_TOTAL_IN、NIC_TOTAL_OUT、	                      		
- 
+内存：MEM_URATE、MEM_USED	       
+
+网卡：NIC_TOTAL_IN、NIC_TOTAL_OUT、	                                            		
+                           
 数据库负载：	  
 
-QPS:COM_READS、COM_WEITES          			
-主从延迟：SECOND_BEHIND_MASTER                      			
-慢查询：SLOW_QUERIES_PT                        		
-连接数：THREADS_CONNECTED、THREADS_RUNNING                         						
+QPS:COM_READS、COM_WEITES  
+
+主从延迟：SECOND_BEHIND_MASTER  
+
+慢查询：SLOW_QUERIES_PT 
+
+连接数：THREADS_CONNECTED、THREADS_RUNNING   
+
 
 #### 优化建议	
 1.数据库配置优化             		
@@ -106,12 +112,11 @@ QPS:COM_READS、COM_WEITES
 
 垂直分库，通过按业务拆分主库可以缓解写压力，	
 
-当业务不能再垂直分库的时候，水平分库就可以解决此问题		
-
- （单独写一篇分库分表）			
+当业务不能再垂直分库的时候，水平分库就可以解决此问题	            				
 [数据库水平切割](https://github.com/miozeng/Review/blob/master/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8Emysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%B0%B4%E5%B9%B3%E5%88%87%E5%89%B2.md)
-4.缓存	
-对于大量的查询等操作最先想到的就是缓存，目前除了以前的二级查询，常用的还有redis和mongodb等nosql去做缓存。能大大提高系统效率减少数据库的访问等。 
+
+4.缓存	 
+对于大量的查询等操作最先想到的就是缓存，目前除了以前的二级查询，常用的还有redis和mongodb等nosql去做缓存。能大大提高系统效率减少数据库的访问等。           
 
 
 ### 硬件
