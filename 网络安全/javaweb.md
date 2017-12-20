@@ -61,10 +61,10 @@ spring security也有配置可以设置csrf的过滤器
 如果设置cookie，需要设置为httponly
 
 ### 安全验证工具
-1.burp suite，可惜scanner部分是收费的，所以只可以用此工具做手工验证
-2.sqlMap  sql注入的验证工具
-3.findbugs eclipse插件，用来查看代码的逻辑漏洞等
-
+1.burp suite，可惜scanner部分是收费的，所以只可以用此工具做手工验证                  
+2.sqlMap  sql注入的验证工具               
+3.findbugs eclipse插件，用来查看代码的逻辑漏洞等                   
+                    
 
 ## 补充说明
 加密说明
