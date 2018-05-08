@@ -223,3 +223,15 @@ Alert(/xss/)" width=100>
 在css的style中使用/**/注释符
 使用字符编码
 利用事件触发xss
+
+## 真实案例
+之前遇到过一个path-base的XSS，通过串改请求地址添加脚本获取cookie信息
+eg:
+https://www.baidu.cim/%27%3bfunc(document.cookie)%3b%27           
+
+当然目前很多浏览器都对这一个做了处理，比如Chrome会加上/erroe/根据网页配置页面将挑战到404，而IE的策略可能是停止加载。当然也可以通过自己配置服务端针对这些做一些自定义的处理，而不是浏览器的默认处理      
+https://blog.innerht.ml/the-misunderstood-x-xss-protection/     
+http://www.oschina.net/question/12_72706       
+http://wangye.org/blog/archives/596/     
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection     
+以上是一些资料收集    
