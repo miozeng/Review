@@ -19,4 +19,5 @@
 |[dubbo](https://github.com/miozeng/dubbotest)|
 |[zookeeper](zookeeper)|
 |[python](python)|
+|[deeplearning](deeplearning)|
 |...|
