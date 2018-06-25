@@ -20,4 +20,5 @@
 |[zookeeper](zookeeper)|
 |[python](python)|
 |[deeplearning](deeplearning)|
+|[linux环境](linux环境)|
 |...|
