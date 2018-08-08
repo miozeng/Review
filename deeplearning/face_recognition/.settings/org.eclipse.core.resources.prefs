@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/recognition/bqb.py=UTF-8
+encoding//src/recognition/dlibface.py=UTF-8
+encoding//src/recognition/face_detection.py=UTF-8
+encoding//src/recognition/face_video.py=utf-8
+encoding//src/recognition/opencv.py=UTF-8
